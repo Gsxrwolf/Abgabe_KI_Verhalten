@@ -1,47 +1,43 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class SheepStateMachine: MonoBehaviour
+public class SheepStateMachine : MonoBehaviour
 {
-    public string sheepTag = "Sheep";
-    [HideInInspector] public GameObject[] sheeps;
     [HideInInspector] public static PoolSpawner spawner;
 
+    public SheepIdleState sheepIdleState;
+    public SheepRunState sheepRunState;
+    public SheepHungerState sheepHungerState;
+    public SheepEatState sheepEatState;
+    public SheepFindPartnerState sheepFindPartnerState;
+    public SheepBreedState sheepBreedState;
     private SheepBaseState curState;
 
     [SerializeField] private float health = 10.0f;
 
 
     [SerializeField] public float walkSpeed;
-    [SerializeField] public float viewDistance;
-    [SerializeField] public LayerMask viewMask;
-    [SerializeField] public float attackThreshhold;
-    [SerializeField] public float attackRange;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public SpriteRenderer sr;
-    private Animator anim;
-    public Vector3 scale;
+    [HideInInspector] public Animator anim;
+    [HideInInspector] public NavMeshAgent agent;
 
     void OnEnable()
     {
-        sheeps = GameObject.FindGameObjectsWithTag(sheepTag);
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
 
 
-        //curState = sheepIdleState;
-        curState.Enter(this); 
+        curState = sheepIdleState;
+        curState.Enter(this);
     }
 
     void Update()
     {
         curState.Do(this);
         curState.CheckState(this);
-
-        CheckHealth();
     }
 
     public void SwitchState(SheepBaseState _newState)
@@ -50,19 +46,10 @@ public class SheepStateMachine: MonoBehaviour
         curState = _newState;
         curState.Enter(this);
     }
-
-    private void CheckHealth()
+    public void DealDamage()
     {
-        if(health <= 0)
-        {
-            Die();
-        }
-    }
-    public void DealDamage(float _damage)
-    {
-        health -= _damage;
-        Debug.Log("Wolf Damage"); 
-
+        Die();
+        Debug.Log("Sheep got damage");
     }
 
     private void Die()

@@ -174,7 +174,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4555088497965763763}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
   m_Speed: 4
@@ -276,10 +276,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1426f7e2a3128f45a3831530813e722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxXValueForDestination: 0
-  minXValueForDestination: 0
-  maxYValueForDestination: 0
-  minYValueForDestination: 0
+  maxXValueForDestination: 630
+  minXValueForDestination: 450
+  maxZValueForDestination: 630
+  minZValueForDestination: 480
   switchDirectionIntervall: 10
 --- !u!114 &4131152985594179425
 MonoBehaviour:

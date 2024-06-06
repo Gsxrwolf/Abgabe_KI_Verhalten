@@ -3,7 +3,6 @@ using UnityEngine.AI;
 
 public class WolfStateMachine : MonoBehaviour
 {
-    public static string sheepTag = "Sheep";
     [HideInInspector] public static GameObject[] sheeps;
     [HideInInspector] public static PoolSpawner spawner;
 
@@ -31,23 +30,33 @@ public class WolfStateMachine : MonoBehaviour
 
     void OnEnable()
     {
-        UpdateSheepList();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
+        agent.Warp(transform.position);
 
         curState = idleState;
         curState.Enter(this);
     }
 
+    private void Start()
+    {
+        UpdateSheepList();
+    }
+
     public static void UpdateSheepList()
     {
-        sheeps = spawner.referenceOfOtherSpawner.activeEnemyList.ToArray(); ;
+        sheeps = spawner.referenceOfOtherSpawner.activeEnemyList.ToArray();
     }
 
     void Update()
     {
+        if(agent.isOnNavMesh)
+        {
+            GetComponent<NavMeshAgent>().enabled = true;
+        }
         curState.Do(this);
         curState.CheckState(this);
 
