@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using UnityEngine;
 
-public abstract class State : MonoBehaviour
+public abstract class WolfBaseState : MonoBehaviour
 {
     public abstract void Enter(WolfStateMachine _context);
     public abstract void Do(WolfStateMachine _context);

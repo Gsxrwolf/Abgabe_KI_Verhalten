@@ -8,13 +8,15 @@ public class PoolSpawner : MonoBehaviour
 
     [SerializeField] GameObject enemyPrefab;
 
+    [SerializeField] public PoolSpawner referenceOfOtherSpawner;
+
     [SerializeField] int enemyStartAmount;
     [SerializeField] int enemyRefillAmount;
     [SerializeField] int maxEnemyAmount = 2;
 
     [SerializeField] Vector3 cachePosition;
 
-    private List<GameObject> activeEnemyList = new List<GameObject>();
+    public List<GameObject> activeEnemyList = new List<GameObject>();
     private List<GameObject> cacheEnemyList = new List<GameObject>();
 
     private float timer;
@@ -65,7 +67,15 @@ public class PoolSpawner : MonoBehaviour
             GameObject newEnemy;
             newEnemy = Instantiate(enemyPrefab, cachePosition, transform.rotation, transform);
             newEnemy.SetActive(false);
-            newEnemy.GetComponent<WolfStateMachine>().spawner = this;
+
+            WolfStateMachine wolfState;
+            SheepStateMachine sheepState;
+
+            if(newEnemy.TryGetComponent<WolfStateMachine>(out wolfState))
+                WolfStateMachine.spawner = this;
+            if (newEnemy.TryGetComponent<SheepStateMachine>(out sheepState))
+                SheepStateMachine.spawner = this;
+
             cacheEnemyList.Add(newEnemy);
         }
     }

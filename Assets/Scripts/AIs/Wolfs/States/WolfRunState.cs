@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RunState : State
+public class WolfRunState : WolfBaseState
 {
     public override void Enter(WolfStateMachine _context)
     {

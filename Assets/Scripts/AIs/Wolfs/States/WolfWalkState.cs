@@ -1,17 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class IdleState : State
+public class WolfWalkState : WolfBaseState
 {
-
     public override void Enter(WolfStateMachine _context)
-    {
-    
-    }
-    private void MoveInRandomDirection()
     {
     }
     public override void Do(WolfStateMachine _context)
+    {
+    }
+
+    private void RotateLeftRight(WolfStateMachine _context)
     {
     }
     public override void FixedDo(WolfStateMachine _context)
@@ -23,5 +23,4 @@ public class IdleState : State
     public override void Exit(WolfStateMachine _context)
     {
     }
-
 }

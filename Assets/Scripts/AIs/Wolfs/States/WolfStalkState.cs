@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackState : State
+public class WolfStalkState : WolfBaseState
 {
     public override void Enter(WolfStateMachine _context)
     {
@@ -8,11 +10,8 @@ public class AttackState : State
     public override void Do(WolfStateMachine _context)
     {
     }
-    public void CheckHit()
-    {
-    }
 
-    private void EndAttack()
+    private void RotateLeftRight(WolfStateMachine _context)
     {
     }
     public override void FixedDo(WolfStateMachine _context)
