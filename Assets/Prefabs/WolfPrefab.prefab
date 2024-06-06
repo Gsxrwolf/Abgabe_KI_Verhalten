@@ -249,23 +249,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb054ce94c6f054d92f9acb47cfab1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sheepTag: Sheep
-  sheeps: []
-  spawner: {fileID: 0}
-  idleState: {fileID: 0}
-  followState: {fileID: 0}
-  attackState: {fileID: 0}
+  idleState: {fileID: 7359898774191699104}
+  runState: {fileID: 6783549637382422938}
+  walkState: {fileID: 4131152985594179425}
+  stalkState: {fileID: 3338878143701012709}
+  attackState: {fileID: 2555224646890274356}
   health: 10
-  walkSpeed: 0
-  viewDistance: 0
-  viewMask:
-    serializedVersion: 2
-    m_Bits: 0
-  attackThreshhold: 0
-  attackRange: 0
+  walkSpeed: 1
   rb: {fileID: 0}
   sr: {fileID: 0}
-  scale: {x: 0, y: 0, z: 0}
+  anim: {fileID: 0}
+  agent: {fileID: 0}
+  wolfSmellDistanceToHuntSheep: 40
+  wolfslowDownDistance: 20
+  wolfhideDistance: 10
+  wolfattackDistance: 2
 --- !u!114 &7359898774191699104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +276,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1426f7e2a3128f45a3831530813e722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxXValueForDestination: 0
+  minXValueForDestination: 0
+  maxYValueForDestination: 0
+  minYValueForDestination: 0
+  switchDirectionIntervall: 10
 --- !u!114 &4131152985594179425
 MonoBehaviour:
   m_ObjectHideFlags: 0

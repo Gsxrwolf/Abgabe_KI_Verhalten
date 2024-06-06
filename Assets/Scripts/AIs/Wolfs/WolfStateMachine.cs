@@ -8,24 +8,26 @@ public class WolfStateMachine : MonoBehaviour
     [HideInInspector] public static PoolSpawner spawner;
 
     public WolfIdleState idleState;
-    public WolfWalkState walkState;
     public WolfRunState runState;
+    public WolfWalkState walkState;
     public WolfStalkState stalkState;
     public WolfAttackState attackState;
     private WolfBaseState curState;
 
     [SerializeField] private float health = 10.0f;
-
-
     [SerializeField] public float walkSpeed;
-    [SerializeField] public float viewDistance;
-    [SerializeField] public LayerMask viewMask;
-    [SerializeField] public float attackThreshhold;
-    [SerializeField] public float attackRange;
+
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public SpriteRenderer sr;
     [HideInInspector] public Animator anim;
     [HideInInspector] public NavMeshAgent agent;
+
+
+
+    [SerializeField] public float wolfSmellDistanceToHuntSheep = 40f;
+    [SerializeField] public float wolfslowDownDistance = 20f;
+    [SerializeField] public float wolfhideDistance = 10f;
+    [SerializeField] public float wolfattackDistance = 2f;
 
     void OnEnable()
     {

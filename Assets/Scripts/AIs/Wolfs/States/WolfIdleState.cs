@@ -4,7 +4,6 @@ using UnityEngine.UIElements;
 public class WolfIdleState : WolfBaseState
 {
     private WolfStateMachine context;
-    [SerializeField] private float wolfSmellDistanceToHuntSheep = 40f;
 
     [SerializeField] private float maxXValueForDestination;
     [SerializeField] private float minXValueForDestination;
@@ -19,6 +18,7 @@ public class WolfIdleState : WolfBaseState
     }
     private void NavigateRandomDestination()
     {
+        context.anim.SetTrigger("Walk");
         context.agent.SetDestination(GetRandomDestination());
     }
     private Vector3 GetRandomDestination()
@@ -65,14 +65,15 @@ public class WolfIdleState : WolfBaseState
     public override void CheckState(WolfStateMachine _context)
     {
         GameObject nearestSheep = _context.GetNearestSheep(transform.position);
-        if(Vector3.Distance(nearestSheep.transform.position,transform.position) < wolfSmellDistanceToHuntSheep)
+        if(Vector3.Distance(nearestSheep.transform.position,transform.position) < _context.wolfSmellDistanceToHuntSheep)
         {
-            _context.SwitchState(_context.walkState);
+            _context.SwitchState(_context.runState);
         }
     }
     public override void Exit(WolfStateMachine _context)
     {
         CancelInvoke("NavigateRandomDestination");
+        _context.anim.ResetTrigger("Walk");
     }
 
 }

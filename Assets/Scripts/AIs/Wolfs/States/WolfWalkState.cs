@@ -9,18 +9,27 @@ public class WolfWalkState : WolfBaseState
     }
     public override void Do(WolfStateMachine _context)
     {
-    }
-
-    private void RotateLeftRight(WolfStateMachine _context)
-    {
+        _context.anim.SetTrigger("Walk");
+        GameObject nearestSheep = _context.GetNearestSheep(transform.position);
+        _context.agent.SetDestination(nearestSheep.transform.position);
     }
     public override void FixedDo(WolfStateMachine _context)
     {
     }
     public override void CheckState(WolfStateMachine _context)
     {
+        GameObject nearestSheep = _context.GetNearestSheep(transform.position);
+        if (Vector3.Distance(nearestSheep.transform.position, transform.position) > _context.wolfslowDownDistance)
+        {
+            _context.SwitchState(_context.runState);
+        }
+        if (Vector3.Distance(nearestSheep.transform.position, transform.position) < _context.wolfattackDistance)
+        {
+            _context.SwitchState(_context.stalkState);
+        }
     }
     public override void Exit(WolfStateMachine _context)
     {
+        _context.anim.ResetTrigger("Walk");
     }
 }
