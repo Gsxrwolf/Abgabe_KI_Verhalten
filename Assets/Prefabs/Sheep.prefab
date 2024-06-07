@@ -223,10 +223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf9e03e611d29a1429b0be184817a314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxXValueForDestination: 570
+  maxXValueForDestination: 575
   minXValueForDestination: 500
-  maxZValueForDestination: 560
-  minZValueForDestination: 520
+  maxZValueForDestination: 565
+  minZValueForDestination: 515
   switchDirectionIntervall: 5
 --- !u!114 &3559422423508418971
 MonoBehaviour:

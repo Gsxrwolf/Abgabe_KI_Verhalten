@@ -81,10 +81,14 @@ public class PoolSpawner : MonoBehaviour
         {
             return;
         }
+
+
         NavMeshHit hit;
         bool temp = NavMesh.SamplePosition(spawnPosition, out hit, 10000f, NavMesh.AllAreas);
         spawnPosition = hit.position;
         newEnemy.transform.position = spawnPosition;
+
+
         cacheEnemyList.Remove(newEnemy);
         newEnemy.SetActive(true);
         activeEnemyList.Add(newEnemy);

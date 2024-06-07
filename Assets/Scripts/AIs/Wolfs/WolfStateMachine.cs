@@ -53,10 +53,10 @@ public class WolfStateMachine : MonoBehaviour
 
     void Update()
     {
-        if(agent.isOnNavMesh)
-        {
+        //if(agent.isOnNavMesh)
+        //{
             GetComponent<NavMeshAgent>().enabled = true;
-        }
+        //}
         curState.Do(this);
         curState.CheckState(this);
 

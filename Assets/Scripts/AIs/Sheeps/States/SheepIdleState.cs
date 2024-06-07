@@ -24,7 +24,7 @@ public class SheepIdleState : SheepBaseState
     {
         if (context.agent.isOnNavMesh)
         {
-            context.anim.SetTrigger("Walk");
+            //context.anim.SetTrigger("Walk");
             context.agent.SetDestination(GetRandomDestination());
         }
     }
