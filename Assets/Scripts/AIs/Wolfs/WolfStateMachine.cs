@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -53,14 +54,27 @@ public class WolfStateMachine : MonoBehaviour
 
     void Update()
     {
-        //if(agent.isOnNavMesh)
-        //{
+        if (agent.isOnNavMesh)
+        {
             GetComponent<NavMeshAgent>().enabled = true;
-        //}
+        }
+
+        RotateInRightDirection();
+
         curState.Do(this);
         curState.CheckState(this);
 
         CheckHealth();
+    }
+
+    private void RotateInRightDirection()
+    {
+        if (agent.velocity.magnitude > 0.1f) 
+        {
+            Vector3 direction = -agent.velocity.normalized; //Einfach nicht fragen warum minus ich weiﬂ es selbst nicht aber es funktioniert :)
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            transform.rotation = lookRotation;
+        }
     }
 
     public void SwitchState(WolfBaseState _newState)
@@ -79,7 +93,7 @@ public class WolfStateMachine : MonoBehaviour
         GameObject nearestSheep = sheeps[0];
         foreach (GameObject sheep in sheeps)
         {
-            if (Vector3.Distance(_pos, nearestSheep.transform.position) < Vector3.Distance(_pos, sheep.transform.position))
+            if (Vector3.Distance(_pos, nearestSheep.transform.position) > Vector3.Distance(_pos, sheep.transform.position))
             {
                 nearestSheep = sheep;
             }

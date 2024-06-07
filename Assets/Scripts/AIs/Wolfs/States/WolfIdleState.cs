@@ -10,11 +10,16 @@ public class WolfIdleState : WolfBaseState
     [SerializeField] private float minZValueForDestination;
 
 
+
+
     private float timer;
-    [SerializeField] private float switchDirectionIntervall = 10;
+    [SerializeField] private float switchDirectionIntervall = 10f;
+
+    [SerializeField] private int maxDestinationDistance = 40;
     public override void Enter(WolfStateMachine _context)
     {
         context = _context;
+        context.agent.speed = context.walkSpeed;
         System.Random rnd = new System.Random();
         switchDirectionIntervall += rnd.Next(2);
     }
@@ -34,7 +39,7 @@ public class WolfIdleState : WolfBaseState
         float angle = (float)(rnd.NextDouble() * Mathf.PI * 2);
         destination = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
 
-        destination *= rnd.Next(20);
+        destination *= rnd.Next(maxDestinationDistance);
 
         Vector3 targetPos = transform.position + destination;
 

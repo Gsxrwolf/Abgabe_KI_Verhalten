@@ -10,6 +10,7 @@ public class WolfWalkState : WolfBaseState
     public override void Do(WolfStateMachine _context)
     {
         _context.anim.SetTrigger("Walk");
+        _context.agent.speed = _context.walkSpeed;
         GameObject nearestSheep = _context.GetNearestSheep(transform.position);
         _context.agent.SetDestination(nearestSheep.transform.position);
     }
@@ -23,7 +24,7 @@ public class WolfWalkState : WolfBaseState
         {
             _context.SwitchState(_context.runState);
         }
-        if (Vector3.Distance(nearestSheep.transform.position, transform.position) < _context.wolfattackDistance)
+        if (Vector3.Distance(nearestSheep.transform.position, transform.position) < _context.wolfhideDistance)
         {
             _context.SwitchState(_context.stalkState);
         }

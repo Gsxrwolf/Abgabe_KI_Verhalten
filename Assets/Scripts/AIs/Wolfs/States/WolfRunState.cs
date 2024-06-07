@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class WolfRunState : WolfBaseState
 {
+    [SerializeField] public float runSpeed;
     public override void Enter(WolfStateMachine _context)
     {
     }
     public override void Do(WolfStateMachine _context)
     {
         _context.anim.SetTrigger("Run");
+        _context.agent.speed = runSpeed;
         GameObject nearestSheep = _context.GetNearestSheep(transform.position);
         _context.agent.SetDestination(nearestSheep.transform.position);
     }
