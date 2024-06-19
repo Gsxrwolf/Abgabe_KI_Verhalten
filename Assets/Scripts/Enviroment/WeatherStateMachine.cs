@@ -11,20 +11,23 @@ public class WeatherStateMachine : MonoBehaviour
     public HeavyRain heavyRainState;
     private WeatherBaseState curState;
 
-    [SerializeField] public int lightRainEmissionRate;
-    [SerializeField] public int mediumRainEmissionRate;
-    [SerializeField] public int heavyRainEmissionRate;
-
+    public WeatherSettings weatherSettings;
 
     [SerializeField] public int timeSwitchMin;
     [SerializeField] public int timeSwitchMax;
 
+    [HideInInspector] public float lerpTimer;
+    public float lerpDuration;
+
 
     [SerializeField] public ParticleSystem rainParticalSystem;
-    public ParticleSystem.EmissionModule emission;
+    [HideInInspector] public ParticleSystem.EmissionModule emission;
+
+    [HideInInspector] public TerrainData terrainData;
     void Start()
     {
         emission = rainParticalSystem.emission;
+        terrainData = GetComponent<Terrain>().terrainData;
     }
     void OnEnable()
     {

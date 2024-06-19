@@ -14,7 +14,6 @@ public class Clear : WeatherBaseState
     {
         context = _context;
         Debug.Log("Clear");
-        _context.rainParticalSystem.gameObject.SetActive(false);
 
         timeUntillRain = GetRandomTimeToRain();
     }
@@ -29,6 +28,15 @@ public class Clear : WeatherBaseState
     }
     public override void Do(WeatherStateMachine _context)
     {
+        if (_context.lerpTimer < _context.lerpDuration)
+        {
+            _context.lerpTimer += Time.deltaTime;
+            float lerpFactor = _context.lerpTimer / _context.lerpDuration;
+
+            _context.emission.rateOverTime = Mathf.Lerp(_context.emission.rateOverTime.constant, _context.weatherSettings.clearEmissionRate, lerpFactor);
+            _context.terrainData.wavingGrassStrength = Mathf.Lerp(_context.terrainData.wavingGrassStrength, _context.weatherSettings.clearGrassSpeed, lerpFactor);
+            _context.terrainData.wavingGrassTint = Color.Lerp(_context.terrainData.wavingGrassTint, _context.weatherSettings.clearGrassColor, lerpFactor);
+        }
         if (timer < timeUntillRain)
         {
             timer += Time.deltaTime;
@@ -59,6 +67,10 @@ public class Clear : WeatherBaseState
     }
     public override void Exit(WeatherStateMachine _context)
     {
-        _context.rainParticalSystem.gameObject.SetActive(true);
+        timer = 0;
+        timeUntillRain = 0;
+        rainPossible = false;
+
+        _context.lerpTimer = 0;
     }
 }

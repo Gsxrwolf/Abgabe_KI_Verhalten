@@ -7,14 +7,13 @@ public class LightRain : WeatherBaseState
     private float timer = 0;
 
     private bool rainGettingStronger = false;
-    private bool switchReady;
+    private bool switchReady = false;
 
     private WeatherStateMachine context;
     public override void Enter(WeatherStateMachine _context)
     {
         context = _context;
         Debug.Log("Light");
-        _context.emission.rateOverTime = _context.lightRainEmissionRate;
 
         rainGettingStronger = GetRandomTrueOrFalse();
         timeUntillSwitch = GetRandomTimeToSwitch();
@@ -43,6 +42,17 @@ public class LightRain : WeatherBaseState
     }
     public override void Do(WeatherStateMachine _context)
     {
+        if (_context.lerpTimer < _context.lerpDuration)
+        {
+            _context.lerpTimer += Time.deltaTime;
+            float lerpFactor = _context.lerpTimer / _context.lerpDuration;
+
+            _context.emission.rateOverTime = Mathf.Lerp(_context.emission.rateOverTime.constant, _context.weatherSettings.lightRainEmissionRate, lerpFactor);
+            _context.terrainData.wavingGrassStrength = Mathf.Lerp(_context.terrainData.wavingGrassStrength, _context.weatherSettings.lightRainGrassSpeed, lerpFactor);
+            _context.terrainData.wavingGrassTint = Color.Lerp(_context.terrainData.wavingGrassTint, _context.weatherSettings.lightRainGrassColor, lerpFactor);
+        }
+
+
         if (timer < timeUntillSwitch)
         {
             timer += Time.deltaTime;
@@ -71,6 +81,13 @@ public class LightRain : WeatherBaseState
     }
     public override void Exit(WeatherStateMachine _context)
     {
+        timeUntillSwitch = 0;
 
+        timer = 0;
+
+        rainGettingStronger = false;
+        switchReady = false;
+
+        _context.lerpTimer = 0;
     }
 }

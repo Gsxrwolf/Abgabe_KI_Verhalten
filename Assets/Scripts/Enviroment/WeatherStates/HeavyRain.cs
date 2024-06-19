@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HeavyRain : WeatherBaseState
@@ -14,12 +12,11 @@ public class HeavyRain : WeatherBaseState
     public override void Enter(WeatherStateMachine _context)
     {
         context = _context;
-        Debug.Log("Clear");
-        _context.rainParticalSystem.gameObject.SetActive(false);
+        Debug.Log("Heavy");
 
-        timeUntillLessRain = GetRandomTimeToRain();
+        timeUntillLessRain = GetRandomTimeToRainLess();
     }
-    private float GetRandomTimeToRain()
+    private float GetRandomTimeToRainLess()
     {
         float time = 0;
         System.Random rnd = new System.Random();
@@ -30,6 +27,17 @@ public class HeavyRain : WeatherBaseState
     }
     public override void Do(WeatherStateMachine _context)
     {
+        if (_context.lerpTimer < _context.lerpDuration)
+        {
+            _context.lerpTimer += Time.deltaTime;
+            float lerpFactor = _context.lerpTimer / _context.lerpDuration;
+
+            _context.emission.rateOverTime = Mathf.Lerp(_context.emission.rateOverTime.constant, _context.weatherSettings.heavyRainEmissionRate, lerpFactor);
+            _context.terrainData.wavingGrassStrength = Mathf.Lerp(_context.terrainData.wavingGrassStrength, _context.weatherSettings.heavyRainGrassSpeed, lerpFactor);
+            _context.terrainData.wavingGrassTint = Color.Lerp(_context.terrainData.wavingGrassTint, _context.weatherSettings.heavyRainGrassColor, lerpFactor);
+        }
+
+
         if (timer < timeUntillLessRain)
         {
             timer += Time.deltaTime;
@@ -64,6 +72,12 @@ public class HeavyRain : WeatherBaseState
     }
     public override void Exit(WeatherStateMachine _context)
     {
+        timeUntillLessRain = 0;
 
+        timer = 0;
+
+        rainPossible = false;
+
+        _context.lerpTimer = 0;
     }
 }
