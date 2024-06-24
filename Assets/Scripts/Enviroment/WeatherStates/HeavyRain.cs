@@ -12,7 +12,6 @@ public class HeavyRain : WeatherBaseState
     public override void Enter(WeatherStateMachine _context)
     {
         context = _context;
-        Debug.Log("Heavy");
 
         timeUntillLessRain = GetRandomTimeToRainLess();
     }

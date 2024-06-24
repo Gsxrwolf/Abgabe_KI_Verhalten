@@ -1,10 +1,29 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SheepBreedState : SheepBaseState
 {
+    [SerializeField] private float babySpawnDelay;
+    [HideInInspector] public bool lockBabySpawn;
+    [HideInInspector] public bool breedingDone;
+
+    private GameObject partner;
     public override void Enter(SheepStateMachine _context)
     {
+        partner = _context.sheepFindPartnerState.partner;
+        Invoke("SpawnBabySheep", babySpawnDelay);
+    }
+    private void SpawnBabySheep()
+    {
+        if (!lockBabySpawn)
+        {
+            partner.GetComponent<SheepBreedState>().lockBabySpawn = true;
+            Vector3 spawnPos = SheepStateMachine.GetMiddlePoint(transform.position, partner.transform.position);
+            SheepStateMachine.spawner.SpawnNewEnemy(spawnPos);
+
+            breedingDone = true;
+            partner.GetComponent<SheepBreedState>().breedingDone = true;
+        }
     }
     public override void Do(SheepStateMachine _context)
     {
@@ -14,8 +33,14 @@ public class SheepBreedState : SheepBaseState
     }
     public override void CheckState(SheepStateMachine _context)
     {
+        if (breedingDone)
+            _context.SwitchState(_context.sheepIdleState);
     }
     public override void Exit(SheepStateMachine _context)
     {
+
+        breedingDone = false;
+        _context.sheepFindPartnerState.partner = null;
+        lockBabySpawn = false;
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,8 +15,10 @@ public class WolfStateMachine : MonoBehaviour
 
     [SerializeField] private float health = 10.0f;
     [SerializeField] public float walkSpeed;
+    [SerializeField] public float runSpeed;
+    [SerializeField] public float stalkSpeed;
 
-    [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public Rigidbody rb;
     [HideInInspector] public SpriteRenderer sr;
     [HideInInspector] public Animator anim;
     [HideInInspector] public NavMeshAgent agent;
@@ -31,12 +32,14 @@ public class WolfStateMachine : MonoBehaviour
 
     void OnEnable()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         sr = GetComponent<SpriteRenderer>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
         agent.Warp(transform.position);
+
+        agent.speed = walkSpeed;
 
         curState = idleState;
         curState.Enter(this);
@@ -58,8 +61,9 @@ public class WolfStateMachine : MonoBehaviour
         {
             GetComponent<NavMeshAgent>().enabled = true;
         }
-
         RotateInRightDirection();
+
+        anim.SetFloat("WalkSpeed", agent.velocity.magnitude);
 
         curState.Do(this);
         curState.CheckState(this);
@@ -69,7 +73,7 @@ public class WolfStateMachine : MonoBehaviour
 
     private void RotateInRightDirection()
     {
-        if (agent.velocity.magnitude > 0.1f) 
+        if (agent.velocity.magnitude > 0.1f)
         {
             Vector3 direction = -agent.velocity.normalized; //Einfach nicht fragen warum minus ich weiﬂ es selbst nicht aber es funktioniert :)
             Quaternion lookRotation = Quaternion.LookRotation(direction);
@@ -86,7 +90,7 @@ public class WolfStateMachine : MonoBehaviour
 
     public GameObject GetNearestSheep(Vector3 _pos)
     {
-        if (sheeps == null)
+        if (sheeps == null || sheeps.Length == 0)
         {
             return null;
         }

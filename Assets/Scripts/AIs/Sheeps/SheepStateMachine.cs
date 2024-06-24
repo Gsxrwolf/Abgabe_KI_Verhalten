@@ -1,5 +1,10 @@
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class SheepStateMachine : MonoBehaviour
 {
@@ -12,11 +17,17 @@ public class SheepStateMachine : MonoBehaviour
     public SheepFindPartnerState sheepFindPartnerState;
     public SheepBreedState sheepBreedState;
     private SheepBaseState curState;
-
-    [SerializeField] private float health = 10.0f;
-
+    public SheepBaseState CurState { get { return curState; } }
 
     [SerializeField] public float walkSpeed;
+    [SerializeField] public const float viewRange = 2f;
+    [Range(0, 360)][SerializeField] public const float viewAngle = 50f;
+
+    [SerializeField] private float maxXValueForDestination = 575;
+    [SerializeField] private float minXValueForDestination = 500;
+    [SerializeField] private float maxZValueForDestination = 565;
+    [SerializeField] private float minZValueForDestination = 515;
+
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public SpriteRenderer sr;
     [HideInInspector] public Animator anim;
@@ -29,6 +40,7 @@ public class SheepStateMachine : MonoBehaviour
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
+        agent.speed = walkSpeed;
 
         curState = sheepIdleState;
         curState.Enter(this);
@@ -51,6 +63,119 @@ public class SheepStateMachine : MonoBehaviour
         Die();
         Debug.Log("Sheep got damage");
     }
+
+
+    public void NavigateRandomDestination()
+    {
+        if (agent.isOnNavMesh)
+        {
+            agent.SetDestination(GetRandomDestination());
+        }
+    }
+    private Vector3 GetRandomDestination()
+    {
+        Vector3 destination;
+        System.Random rnd = new System.Random();
+
+        float angle = (float)(rnd.NextDouble() * Mathf.PI * 2);
+        destination = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
+
+        destination *= rnd.Next(20);
+
+        Vector3 targetPos = transform.position + destination;
+
+        if (InvalidDestination(targetPos))
+        {
+            return GetRandomDestination();
+        }
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(targetPos, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+        else
+        {
+            return GetRandomDestination();
+        }
+    }
+    private bool InvalidDestination(Vector3 _destination)
+    {
+        if (_destination.x > maxXValueForDestination)
+            return true;
+        if (_destination.x < minXValueForDestination)
+            return true;
+        if (_destination.z > maxZValueForDestination)
+            return true;
+        if (_destination.z < minZValueForDestination)
+            return true;
+
+        return false;
+    }
+
+    public List<GameObject> CheckFOV(string _tagToSearch, float _viewRange = viewRange, float _viewAngle = viewAngle)
+    {
+        List<GameObject> hits = new List<GameObject>();
+
+        RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, _viewRange, Vector3.zero);
+
+        foreach (RaycastHit hit in rayHits)
+        {
+            if (hit.collider.CompareTag(_tagToSearch))
+            {
+                Vector3 directionToTarget = (hit.transform.position - transform.position).normalized;
+                if (Vector3.Angle(transform.forward, directionToTarget) < _viewAngle / 2)
+                {
+                    hits.Add(hit.collider.gameObject);
+                }
+            }
+        }
+        return hits;
+    }
+    public List<GameObject> CheckFOV(System.Type _componentType, float _viewRange = viewRange, float _viewAngle = viewAngle)
+    {
+        List<GameObject> hits = new List<GameObject>();
+
+        RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, _viewRange, Vector3.zero);
+
+        foreach (RaycastHit hit in rayHits)
+        {
+            if (hit.collider.TryGetComponent(_componentType, out Component temp))
+            {
+                Vector3 directionToTarget = (hit.transform.position - transform.position).normalized;
+                if (Vector3.Angle(transform.forward, directionToTarget) < _viewAngle / 2)
+                {
+                    hits.Add(hit.collider.gameObject);
+                }
+            }
+        }
+        return hits;
+    }
+
+    public GameObject GetNearestFromAll(GameObject[] _listOfAll)
+    {
+        GameObject nearest = _listOfAll.First();
+        foreach(GameObject _object in _listOfAll)
+        {
+            if(Vector3.Distance(transform.position, _object.transform.position) < Vector3.Distance(transform.position, nearest.transform.position))
+                nearest = _object;
+        }
+        return nearest;
+    }
+    public GameObject GetNearestFromAll(List<GameObject> _listOfAll)
+    {
+        GameObject nearest = _listOfAll.First();
+        foreach (GameObject _object in _listOfAll)
+        {
+            if (Vector3.Distance(transform.position, _object.transform.position) < Vector3.Distance(transform.position, nearest.transform.position))
+                nearest = _object;
+        }
+        return nearest;
+    }
+    public static Vector3 GetMiddlePoint(Vector3 _a, Vector3 _b)
+    {
+        return (_a + _b) / 2;
+    }
+
 
     private void Die()
     {

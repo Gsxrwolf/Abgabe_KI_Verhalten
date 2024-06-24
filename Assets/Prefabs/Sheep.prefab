@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8837032741286712700}
   - component: {fileID: 5692337241189052931}
   - component: {fileID: 2566208417753902607}
-  - component: {fileID: -1116404109708580050}
   - component: {fileID: 1183029692254602200}
   - component: {fileID: 9097947687138232358}
   - component: {fileID: 3126291522866170532}
@@ -28,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8837032741286712700
 Transform:
   m_ObjectHideFlags: 0
@@ -38,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 7836498861814067753}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 537, y: 24, z: 537}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -94,33 +93,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &-1116404109708580050
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7836498861814067753}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!136 &1183029692254602200
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -206,7 +178,11 @@ MonoBehaviour:
   sheepFindPartnerState: {fileID: 1829921618152487984}
   sheepBreedState: {fileID: 1492461138846977085}
   health: 10
-  walkSpeed: 1
+  walkSpeed: 3.5
+  maxXValueForDestination: 575
+  minXValueForDestination: 500
+  maxZValueForDestination: 565
+  minZValueForDestination: 515
   rb: {fileID: 0}
   sr: {fileID: 0}
   anim: {fileID: 0}
@@ -223,11 +199,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf9e03e611d29a1429b0be184817a314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxXValueForDestination: 575
-  minXValueForDestination: 500
-  maxZValueForDestination: 565
-  minZValueForDestination: 515
   switchDirectionIntervall: 5
+  eatTime: 10
+  breedTime: 10
 --- !u!114 &3559422423508418971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f209b9156a8ded48bdc15a708322b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runDistance: 5
+  runSpeed: 5
 --- !u!114 &4637186833418982991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,6 +252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65fcd0a314b88364099056522e45ac1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  partner: {fileID: 0}
+  smellPartnerDistance: 20
+  switchDirectionIntervall: 3
 --- !u!114 &1492461138846977085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,3 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed0f258b74928c468cfcbc89a7ccad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  babySpawnDelay: 4
+  lockBabySpawn: 0
+  breedingDone: 0

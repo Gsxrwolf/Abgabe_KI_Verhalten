@@ -9,7 +9,7 @@ public class WolfWalkState : WolfBaseState
     }
     public override void Do(WolfStateMachine _context)
     {
-        _context.anim.SetTrigger("Walk");
+        _context.anim.SetBool("Walk", true);
         _context.agent.speed = _context.walkSpeed;
         GameObject nearestSheep = _context.GetNearestSheep(transform.position);
         _context.agent.SetDestination(nearestSheep.transform.position);
@@ -31,6 +31,6 @@ public class WolfWalkState : WolfBaseState
     }
     public override void Exit(WolfStateMachine _context)
     {
-        _context.anim.ResetTrigger("Walk");
+        _context.anim.SetBool("Walk", false);
     }
 }

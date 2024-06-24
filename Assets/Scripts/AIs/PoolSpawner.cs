@@ -41,9 +41,9 @@ public class PoolSpawner : MonoBehaviour
     private void LateStart()
     {
         InstantiateNewEnemies(enemyStartAmount);
-        if(SpawndDirect)
+        if (SpawndDirect)
         {
-            for(int i = 0; i < enemyStartAmount; i++)
+            for (int i = 0; i < enemyStartAmount; i++)
             {
                 SpawnNewEnemy();
             }
@@ -70,28 +70,59 @@ public class PoolSpawner : MonoBehaviour
 
     public void SpawnNewEnemy()
     {
-        GameObject newEnemy;
-        if (cacheEnemyList.Count <= 0)
+        if (activeEnemyList.Count < maxEnemyAmount)
         {
-            InstantiateNewEnemies(enemyRefillAmount);
+            GameObject newEnemy;
+            if (cacheEnemyList.Count <= 0)
+            {
+                InstantiateNewEnemies(enemyRefillAmount);
+            }
+            newEnemy = cacheEnemyList.First();
+            Vector3 spawnPosition = GetNewSpawnPosition();
+            if (spawnPosition == Vector3.zero && spawnPosition == cachePosition)
+            {
+                return;
+            }
+
+
+            NavMeshHit hit;
+            bool temp = NavMesh.SamplePosition(spawnPosition, out hit, 10000f, NavMesh.AllAreas);
+            spawnPosition = hit.position;
+            newEnemy.transform.position = spawnPosition;
+
+
+            cacheEnemyList.Remove(newEnemy);
+            newEnemy.SetActive(true);
+            activeEnemyList.Add(newEnemy);
         }
-        newEnemy = cacheEnemyList.First();
-        Vector3 spawnPosition = GetNewSpawnPosition();
-        if (spawnPosition == Vector3.zero && spawnPosition == cachePosition)
+    }
+    public void SpawnNewEnemy(Vector3 _spawnPos)
+    {
+        if (activeEnemyList.Count < maxEnemyAmount)
         {
-            return;
+            GameObject newEnemy;
+            if (cacheEnemyList.Count <= 0)
+            {
+                InstantiateNewEnemies(enemyRefillAmount);
+            }
+            newEnemy = cacheEnemyList.First();
+            Vector3 spawnPosition = _spawnPos;
+            if (spawnPosition == Vector3.zero && spawnPosition == cachePosition)
+            {
+                return;
+            }
+
+
+            NavMeshHit hit;
+            bool temp = NavMesh.SamplePosition(spawnPosition, out hit, 10000f, NavMesh.AllAreas);
+            spawnPosition = hit.position;
+            newEnemy.transform.position = spawnPosition;
+
+
+            cacheEnemyList.Remove(newEnemy);
+            newEnemy.SetActive(true);
+            activeEnemyList.Add(newEnemy);
         }
-
-
-        NavMeshHit hit;
-        bool temp = NavMesh.SamplePosition(spawnPosition, out hit, 10000f, NavMesh.AllAreas);
-        spawnPosition = hit.position;
-        newEnemy.transform.position = spawnPosition;
-
-
-        cacheEnemyList.Remove(newEnemy);
-        newEnemy.SetActive(true);
-        activeEnemyList.Add(newEnemy);
     }
     private void InstantiateNewEnemies(int amount)
     {
@@ -103,7 +134,7 @@ public class PoolSpawner : MonoBehaviour
             cachePosition = hit.position;
             newEnemy = Instantiate(enemyPrefab, cachePosition, transform.rotation, transform);
             newEnemy.SetActive(false);
-            
+
 
             WolfStateMachine wolfState;
             SheepStateMachine sheepState;
@@ -129,7 +160,7 @@ public class PoolSpawner : MonoBehaviour
     private int counter = -1;
     private Vector3 GetNewSpawnPosition()
     {
-        if(SpawndDirect)
+        if (SpawndDirect)
         {
             counter++;
             return spawnPoints[counter].position;

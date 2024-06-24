@@ -13,7 +13,6 @@ public class LightRain : WeatherBaseState
     public override void Enter(WeatherStateMachine _context)
     {
         context = _context;
-        Debug.Log("Light");
 
         rainGettingStronger = GetRandomTrueOrFalse();
         timeUntillSwitch = GetRandomTimeToSwitch();

@@ -1,33 +1,36 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WolfIdleState : WolfBaseState
 {
     private WolfStateMachine context;
 
-    [SerializeField] private float maxXValueForDestination;
-    [SerializeField] private float minXValueForDestination;
-    [SerializeField] private float maxZValueForDestination;
-    [SerializeField] private float minZValueForDestination;
+    [SerializeField] private float maxXValueForDestination = 630;
+    [SerializeField] private float minXValueForDestination = 450;
+    [SerializeField] private float maxZValueForDestination = 630;
+    [SerializeField] private float minZValueForDestination = 480;
 
 
 
 
     private float timer;
-    [SerializeField] private float switchDirectionIntervall = 10f;
+    private float switchDirectionIntervall = 5;
+    [SerializeField] private int switchDirectionIntervallMin = 3;
+    [SerializeField] private int switchDirectionIntervallMax = 7;
 
-    [SerializeField] private int maxDestinationDistance = 40;
+    [SerializeField] private int maxDestinationDistance = 20;
     public override void Enter(WolfStateMachine _context)
     {
         context = _context;
         context.agent.speed = context.walkSpeed;
         System.Random rnd = new System.Random();
-        switchDirectionIntervall += rnd.Next(2);
+        switchDirectionIntervall = rnd.Next(switchDirectionIntervallMin, switchDirectionIntervallMax);
+        NavigateRandomDestination();
     }
     private void NavigateRandomDestination()
     {
         if (context.agent.isOnNavMesh)
         {
-            context.anim.SetTrigger("Walk");
             context.agent.SetDestination(GetRandomDestination());
         }
     }
@@ -47,8 +50,15 @@ public class WolfIdleState : WolfBaseState
         {
             return GetRandomDestination();
         }
-
-        return targetPos;
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(targetPos, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+        else
+        {
+            return GetRandomDestination();
+        }
     }
     private bool InvalidDestination(Vector3 _destination)
     {
@@ -71,6 +81,14 @@ public class WolfIdleState : WolfBaseState
             timer = 0;
             NavigateRandomDestination();
         }
+        if (_context.agent.velocity.magnitude > 0.1f)
+        {
+            _context.anim.SetBool("Walk",true);
+        }
+        else
+        {
+            _context.anim.SetBool("Walk", false);
+        }
     }
     public override void FixedDo(WolfStateMachine _context)
     {
@@ -85,7 +103,7 @@ public class WolfIdleState : WolfBaseState
     }
     public override void Exit(WolfStateMachine _context)
     {
-        _context.anim.ResetTrigger("Walk");
+        _context.anim.SetBool("Walk", false);
     }
 
 }

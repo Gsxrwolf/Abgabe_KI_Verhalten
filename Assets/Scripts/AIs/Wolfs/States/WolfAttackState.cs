@@ -4,7 +4,6 @@ public class WolfAttackState : WolfBaseState
 {
     private WolfStateMachine context;
 
-    [SerializeField] public float jumpAttackSpeed;
 
     private bool isAttacking;
     public override void Enter(WolfStateMachine _context)
@@ -21,11 +20,15 @@ public class WolfAttackState : WolfBaseState
     }
     public void StartJumpAttack()
     {
-        context.agent.speed = 0.01f;
     }
     public void CheckHit()
     {
+        GameObject target = context.GetNearestSheep(transform.position);
 
+        if(Vector3.Distance(transform.position,target.transform.position) < 3f)
+        {
+            target.GetComponent<SheepStateMachine>().DealDamage();
+        }
     }
 
     private void EndJumpAttack()
@@ -40,7 +43,7 @@ public class WolfAttackState : WolfBaseState
     {
         if(!isAttacking)
         {
-            _context.SwitchState(_context.stalkState);
+            _context.SwitchState(_context.idleState);
         }
     }
     public override void Exit(WolfStateMachine _context)

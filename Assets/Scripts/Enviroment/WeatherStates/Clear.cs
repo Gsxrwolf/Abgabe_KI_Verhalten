@@ -13,7 +13,6 @@ public class Clear : WeatherBaseState
     public override void Enter(WeatherStateMachine _context)
     {
         context = _context;
-        Debug.Log("Clear");
 
         timeUntillRain = GetRandomTimeToRain();
     }

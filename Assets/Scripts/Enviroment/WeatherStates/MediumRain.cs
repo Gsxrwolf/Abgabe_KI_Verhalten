@@ -13,7 +13,6 @@ public class MediumRain : WeatherBaseState
     public override void Enter(WeatherStateMachine _context)
     {
         context = _context;
-        Debug.Log("Medium");
 
         rainGettingStronger = GetRandomTrueOrFalse();
         timeUntillSwitch = GetRandomTimeToSwitch();

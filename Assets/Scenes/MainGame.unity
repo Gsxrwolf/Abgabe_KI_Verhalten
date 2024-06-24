@@ -34173,7 +34173,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990833802}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f49aff1c5299fc04693199cb5bd71520, type: 3}
   m_Name: 
@@ -37430,7 +37430,7 @@ PrefabInstance:
     - target: {fileID: 3419312930001662558, guid: 38e680fb9480b4f4d95aece94f24968a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3500629662198872403, guid: 38e680fb9480b4f4d95aece94f24968a,
         type: 3}
@@ -37745,12 +37745,12 @@ PrefabInstance:
     - target: {fileID: 8945800657495402325, guid: 38e680fb9480b4f4d95aece94f24968a,
         type: 3}
       propertyPath: maxEnemyAmount
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8945800657495402325, guid: 38e680fb9480b4f4d95aece94f24968a,
         type: 3}
       propertyPath: enemyStartAmount
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8945800657495402325, guid: 38e680fb9480b4f4d95aece94f24968a,
         type: 3}
@@ -47427,7 +47427,7 @@ PrefabInstance:
     - target: {fileID: 3004025532707144552, guid: c6fef59670e98c746994f1fb221a3183,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3068908276288948138, guid: c6fef59670e98c746994f1fb221a3183,
         type: 3}
@@ -47478,6 +47478,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090273211495569164, guid: c6fef59670e98c746994f1fb221a3183,
+        type: 3}
+      propertyPath: enemyStartAmount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
