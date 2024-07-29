@@ -4364,31 +4364,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 4.6329184, z: 0}
   m_TimeToStationary: 0.5
---- !u!1 &225036498 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2178674404787005545, guid: c6fef59670e98c746994f1fb221a3183,
-    type: 3}
-  m_PrefabInstance: {fileID: 7814437746696992985}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &225036500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 225036498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 0
-  m_Area: 0
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 1
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff
 --- !u!1 &227157463
 GameObject:
   m_ObjectHideFlags: 0
@@ -8206,31 +8181,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 4.6329184, z: 0}
   m_TimeToStationary: 0.5
---- !u!1 &458330171 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7960723577599595053, guid: c6fef59670e98c746994f1fb221a3183,
-    type: 3}
-  m_PrefabInstance: {fileID: 7814437746696992985}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &458330173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 458330171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 0
-  m_Area: 0
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 1
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff
 --- !u!1 &460877974
 GameObject:
   m_ObjectHideFlags: 0
@@ -20649,31 +20599,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 4.6329184, z: 0}
   m_TimeToStationary: 0.5
---- !u!1 &1180984917 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4971111753649104816, guid: c6fef59670e98c746994f1fb221a3183,
-    type: 3}
-  m_PrefabInstance: {fileID: 7814437746696992985}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1180984919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1180984917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 0
-  m_Area: 0
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 1
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff
 --- !u!1 &1182858001 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4025261900230460374, guid: 38e680fb9480b4f4d95aece94f24968a,
@@ -29802,31 +29727,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 4.6329184, z: 0}
   m_TimeToStationary: 0.5
---- !u!1 &1750748482 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3744154507487835429, guid: c6fef59670e98c746994f1fb221a3183,
-    type: 3}
-  m_PrefabInstance: {fileID: 7814437746696992985}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1750748484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750748482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 0
-  m_Area: 0
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 1
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff
 --- !u!1 &1750946195
 GameObject:
   m_ObjectHideFlags: 0
@@ -35057,31 +34957,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 4.6329184, z: 0}
   m_TimeToStationary: 0.5
---- !u!1 &2040994250 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1534529594458674816, guid: c6fef59670e98c746994f1fb221a3183,
-    type: 3}
-  m_PrefabInstance: {fileID: 7814437746696992985}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2040994252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040994250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 0
-  m_Area: 0
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 1
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff
 --- !u!1 &2041521239
 GameObject:
   m_ObjectHideFlags: 0
@@ -37749,12 +37624,17 @@ PrefabInstance:
     - target: {fileID: 8945800657495402325, guid: 38e680fb9480b4f4d95aece94f24968a,
         type: 3}
       propertyPath: maxEnemyAmount
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8945800657495402325, guid: 38e680fb9480b4f4d95aece94f24968a,
         type: 3}
       propertyPath: enemyStartAmount
-      value: 1
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8945800657495402325, guid: 38e680fb9480b4f4d95aece94f24968a,
+        type: 3}
+      propertyPath: enemyRefillAmount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8945800657495402325, guid: 38e680fb9480b4f4d95aece94f24968a,
         type: 3}
@@ -47428,11 +47308,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SheepSpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 3004025532707144552, guid: c6fef59670e98c746994f1fb221a3183,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3068908276288948138, guid: c6fef59670e98c746994f1fb221a3183,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -47483,35 +47358,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7090273211495569164, guid: c6fef59670e98c746994f1fb221a3183,
-        type: 3}
-      propertyPath: enemyStartAmount
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2178674404787005545, guid: c6fef59670e98c746994f1fb221a3183,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 225036500}
-    - targetCorrespondingSourceObject: {fileID: 3744154507487835429, guid: c6fef59670e98c746994f1fb221a3183,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1750748484}
-    - targetCorrespondingSourceObject: {fileID: 1534529594458674816, guid: c6fef59670e98c746994f1fb221a3183,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2040994252}
-    - targetCorrespondingSourceObject: {fileID: 7960723577599595053, guid: c6fef59670e98c746994f1fb221a3183,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 458330173}
-    - targetCorrespondingSourceObject: {fileID: 4971111753649104816, guid: c6fef59670e98c746994f1fb221a3183,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1180984919}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6fef59670e98c746994f1fb221a3183, type: 3}
 --- !u!199 &8138610127509691532
 ParticleSystemRenderer:

@@ -17,17 +17,21 @@ public class PoolSpawner : MonoBehaviour
     [SerializeField] float delayedStartTime;
     [SerializeField] bool SpawndDirect;
 
+    private float timer;
+    [SerializeField] public float spawnRate;
+
     [SerializeField] int enemyStartAmount;
     [SerializeField] int enemyRefillAmount;
     [SerializeField] int maxEnemyAmount = 2;
+
 
     [SerializeField] public Vector3 cachePosition;
 
     public List<GameObject> activeEnemyList = new List<GameObject>();
     private List<GameObject> cacheEnemyList = new List<GameObject>();
 
-    private float timer;
-    [SerializeField] public float spawnRate;
+    [SerializeField] private float characterHight;
+
 
     public static event Action LevelFinished;
 
@@ -116,6 +120,7 @@ public class PoolSpawner : MonoBehaviour
             NavMeshHit hit;
             bool temp = NavMesh.SamplePosition(spawnPosition, out hit, 10000f, NavMesh.AllAreas);
             spawnPosition = hit.position;
+            spawnPosition.y += characterHight/2;
             newEnemy.transform.position = spawnPosition;
 
 
