@@ -20,6 +20,7 @@ public class CamController : MonoBehaviour
 
     public static event Action<Vector3> newDogDestination;
     public static event Action<GameObject> followWolf;
+
     private void Start()
     {
         cam = GetComponent<Camera>();
@@ -78,9 +79,9 @@ public class CamController : MonoBehaviour
         }
     }
 
-    private bool CheckPos(Vector3 newPos)
+    private bool CheckPos(Vector3 _newPos)
     {
-        if (newPos.x > minX && newPos.x < maxX && newPos.z > minZ && newPos.z < maxZ)
+        if (_newPos.x > minX && _newPos.x < maxX && _newPos.z > minZ && _newPos.z < maxZ)
         {
             return true;
         }

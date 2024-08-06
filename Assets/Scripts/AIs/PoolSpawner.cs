@@ -7,25 +7,25 @@ using UnityEngine.AI;
 public class PoolSpawner : MonoBehaviour
 {
 
-    [SerializeField] GameObject enemyPrefab;
+    [SerializeField] private GameObject enemyPrefab;
 
-    [SerializeField] Transform[] spawnPoints;
+    [SerializeField] private Transform[] spawnPoints;
 
     [SerializeField] public PoolSpawner referenceOfOtherSpawner;
 
 
-    [SerializeField] float delayedStartTime;
-    [SerializeField] bool SpawndDirect;
+    [SerializeField] private float delayedStartTime;
+    [SerializeField] private bool SpawndDirect;
 
     private float timer;
-    [SerializeField] public float spawnRate;
+    [SerializeField] private float spawnRate;
 
-    [SerializeField] int enemyStartAmount;
-    [SerializeField] int enemyRefillAmount;
-    [SerializeField] int maxEnemyAmount = 2;
+    [SerializeField] private int enemyStartAmount;
+    [SerializeField] private int enemyRefillAmount;
+    [SerializeField] private int maxEnemyAmount = 2;
 
 
-    [SerializeField] public Vector3 cachePosition;
+    [SerializeField] private Vector3 cachePosition;
 
     public List<GameObject> activeEnemyList = new List<GameObject>();
     private List<GameObject> cacheEnemyList = new List<GameObject>();
@@ -33,7 +33,6 @@ public class PoolSpawner : MonoBehaviour
     [SerializeField] private float characterHight;
 
 
-    public static event Action LevelFinished;
 
     private bool wait;
     void Start()
@@ -162,9 +161,10 @@ public class PoolSpawner : MonoBehaviour
         cacheEnemyList.Add(_enemy);
     }
 
-    private int counter = -1;
+    
     private Vector3 GetNewSpawnPosition()
     {
+        int counter = -1;
         if (SpawndDirect)
         {
             counter++;
