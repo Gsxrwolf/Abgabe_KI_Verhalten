@@ -12,8 +12,6 @@ public class SheepStateMachine : MonoBehaviour
 
     public SheepIdleState sheepIdleState;
     public SheepRunState sheepRunState;
-    public SheepHungerState sheepHungerState;
-    public SheepEatState sheepEatState;
     public SheepFindPartnerState sheepFindPartnerState;
     public SheepBreedState sheepBreedState;
     private SheepBaseState curState;

@@ -14,13 +14,6 @@ public class SheepIdleState : SheepBaseState
     [SerializeField] private int switchDirectionIntervallMax = 7;
 
 
-    private float eatTimer;
-    private float eatTime = 10;
-    [SerializeField] private int eatTimeMin = 8;
-    [SerializeField] private int eatTimeMax = 12;
-    private bool eatingTime = false;
-
-
     private float breedTimer;
     private float breedTime = 10;
     [SerializeField] private int breedTimeMin = 8;
@@ -32,7 +25,6 @@ public class SheepIdleState : SheepBaseState
         context = _context;
         System.Random rnd = new System.Random();
         switchDirectionIntervall = rnd.Next(switchDirectionIntervallMin, switchDirectionIntervallMax);
-        eatTime = rnd.Next(eatTimeMin,eatTimeMax);
         breedTime = rnd.Next(breedTimeMin,breedTimeMax);
         _context.NavigateRandomDestination();
     }
@@ -43,12 +35,6 @@ public class SheepIdleState : SheepBaseState
         {
             timer = 0;
             _context.NavigateRandomDestination();
-        }
-        eatTimer += Time.deltaTime;
-        if (eatTimer > eatTime)
-        {
-            eatTimer = 0;
-            eatingTime = true;
         }
         breedTimer += Time.deltaTime;
         if (breedTimer > breedTime)
@@ -65,8 +51,6 @@ public class SheepIdleState : SheepBaseState
         List<GameObject> visibleWolves = _context.CheckFOV(typeof(WolfStateMachine));
         if(visibleWolves.Count > 0)
             _context.SwitchState(_context.sheepRunState);
-        //if(eatingTime)
-        //    _context.SwitchState(_context.sheepHungerState);
         if(breedingTime)
             _context.SwitchState(_context.sheepFindPartnerState);
     }
@@ -74,7 +58,6 @@ public class SheepIdleState : SheepBaseState
     {
         _context.anim.ResetTrigger("Walk");
         breedingTime = false;
-        eatingTime= false;
     }
 
 }

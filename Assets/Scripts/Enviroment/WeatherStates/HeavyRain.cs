@@ -6,7 +6,7 @@ public class HeavyRain : WeatherBaseState
 
     private float timer = 0;
 
-    private bool rainPossible = false;
+    private bool switchReady = false;
 
     private WeatherStateMachine context;
     public override void Enter(WeatherStateMachine _context)
@@ -43,11 +43,11 @@ public class HeavyRain : WeatherBaseState
             return;
         }
         timer = 0;
-        rainPossible = true;
+        switchReady = true;
     }
     public override void CheckState(WeatherStateMachine _context)
     {
-        if (rainPossible)
+        if (switchReady)
         {
             System.Random rnd = new System.Random();
             int temp = rnd.Next(100);
@@ -75,7 +75,7 @@ public class HeavyRain : WeatherBaseState
 
         timer = 0;
 
-        rainPossible = false;
+        switchReady = false;
 
         _context.lerpTimer = 0;
     }
