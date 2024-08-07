@@ -1,7 +1,4 @@
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.AI;
-using static UnityEditor.Rendering.InspectorCurveEditor;
 
 public class WeatherStateMachine : MonoBehaviour
 {

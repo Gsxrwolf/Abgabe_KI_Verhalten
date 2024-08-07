@@ -10,6 +10,9 @@ public class Clear : WeatherBaseState
     private bool rainPossible = false;
 
     private WeatherStateMachine context;
+
+    public static event Action rainStarts;
+
     public override void Enter(WeatherStateMachine _context)
     {
         context = _context;
@@ -52,10 +55,12 @@ public class Clear : WeatherBaseState
             int temp = rnd.Next(2);
             if(temp == 0)
             {
+                rainStarts?.Invoke();
                 _context.SwitchState(_context.lightRainState);
             }
             else
             {
+                rainStarts?.Invoke();
                 _context.SwitchState(_context.mediumRainState);
             }
         }
