@@ -5,8 +5,12 @@ SCRIPTS:
 
 ART:
 lowpoly wolf Free low-poly 3D model by gregoriolord https://www.cgtrader.com/free-3d-models/animals/mammal/lowpoly-wolf-44b5f724-801d-466f-98dc-8b9d1b2094b8
+
 Low_Poly Nature by Oode Studios https://assetstore.unity.com/packages/3d/environments/low-poly-nature-260306
 
+Lowpoly Environment - Nature Free - MEDIEVAL FANTASY SERIES by Polytope Studio https://assetstore.unity.com/packages/3d/environments/lowpoly-environment-nature-free-medieval-fantasy-series-187052
+
+Fantasy Skybox FREE by Render Knight https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
 
 AUDIO:
 
