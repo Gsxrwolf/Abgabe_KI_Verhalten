@@ -176,6 +176,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2555224646890274356}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eb5a6c0985e26eb4fb4442709793397a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3521474661304654783}
   m_SourcePrefab: {fileID: 100100000, guid: eb5a6c0985e26eb4fb4442709793397a, type: 3}
 --- !u!1 &4555088497965763763 stripped
 GameObject:
@@ -324,3 +328,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   moveDuration: 0.2
+--- !u!114 &3521474661304654783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4555088497965763763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0c482383055c945ae59d647688ac4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrain: {fileID: 0}
+  trailRadius: 0.5
+  recoveryDelay: 3
+  recoveryDuration: 5
+  trailGrassHeight: 54
+  normalGrassHeight: 255

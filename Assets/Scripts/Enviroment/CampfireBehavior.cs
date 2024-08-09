@@ -13,8 +13,6 @@ public class CampfireBehavior : MonoBehaviour
     [SerializeField] private int killSmokeAfterFireInSec;
 
     private bool isOff = false;
-
-    public event Action startRain;
     void OnEnable()
     {
         smomkeEffect.enabled = true;
