@@ -89,14 +89,21 @@ public class PoolSpawner : MonoBehaviour
 
 
             NavMeshHit hit;
-            bool temp = NavMesh.SamplePosition(spawnPosition, out hit, 10000f, NavMesh.AllAreas);
-            spawnPosition = hit.position;
-            newEnemy.transform.position = spawnPosition;
+            if (NavMesh.SamplePosition(spawnPosition, out hit, 10f, NavMesh.AllAreas))
+            {
+                spawnPosition = hit.position;
+                spawnPosition.y += characterHight / 2;
+                newEnemy.transform.position = spawnPosition;
 
 
-            cacheEnemyList.Remove(newEnemy);
-            newEnemy.SetActive(true);
-            activeEnemyList.Add(newEnemy);
+                cacheEnemyList.Remove(newEnemy);
+                newEnemy.SetActive(true);
+                activeEnemyList.Add(newEnemy);
+            }
+            else
+            {
+                SpawnNewEnemy();
+            }
         }
     }
     public void SpawnNewEnemy(Vector3 _spawnPos)
@@ -117,15 +124,21 @@ public class PoolSpawner : MonoBehaviour
 
 
             NavMeshHit hit;
-            bool temp = NavMesh.SamplePosition(spawnPosition, out hit, 10000f, NavMesh.AllAreas);
-            spawnPosition = hit.position;
-            spawnPosition.y += characterHight/2;
-            newEnemy.transform.position = spawnPosition;
+            if(NavMesh.SamplePosition(spawnPosition, out hit, 10f, NavMesh.AllAreas))
+            {
+                spawnPosition = hit.position;
+                spawnPosition.y += characterHight / 2;
+                newEnemy.transform.position = spawnPosition;
 
 
-            cacheEnemyList.Remove(newEnemy);
-            newEnemy.SetActive(true);
-            activeEnemyList.Add(newEnemy);
+                cacheEnemyList.Remove(newEnemy);
+                newEnemy.SetActive(true);
+                activeEnemyList.Add(newEnemy);
+            }
+            else
+            {
+                SpawnNewEnemy(_spawnPos);
+            }
         }
     }
     private void InstantiateNewEnemies(int amount)
@@ -134,8 +147,6 @@ public class PoolSpawner : MonoBehaviour
         {
             GameObject newEnemy;
             NavMeshHit hit;
-            bool temp = NavMesh.SamplePosition(cachePosition, out hit, 10000f, NavMesh.AllAreas);
-            cachePosition = hit.position;
             newEnemy = Instantiate(enemyPrefab, cachePosition, transform.rotation, transform);
             newEnemy.SetActive(false);
 
