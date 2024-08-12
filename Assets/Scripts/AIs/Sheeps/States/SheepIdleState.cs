@@ -21,7 +21,6 @@ public class SheepIdleState : SheepBaseState
     private bool breedingTime = false;
     public override void Enter(SheepStateMachine _context)
     {
-        Debug.Log("Idle");
         context = _context;
         System.Random rnd = new System.Random();
         switchDirectionIntervall = rnd.Next(switchDirectionIntervallMin, switchDirectionIntervallMax);
@@ -56,7 +55,6 @@ public class SheepIdleState : SheepBaseState
     }
     public override void Exit(SheepStateMachine _context)
     {
-        _context.anim.ResetTrigger("Walk");
         breedingTime = false;
     }
 

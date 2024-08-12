@@ -171,7 +171,7 @@ public class SheepStateMachine : MonoBehaviour
     }
     public static Vector3 GetMiddlePoint(Vector3 _a, Vector3 _b)
     {
-        return (_a + _b) / 2;
+        return _a + ((_b - _a) / 2);
     }
 
 

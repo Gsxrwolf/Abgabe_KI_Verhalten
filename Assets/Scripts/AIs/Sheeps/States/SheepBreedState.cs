@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SheepBreedState : SheepBaseState
@@ -8,21 +7,33 @@ public class SheepBreedState : SheepBaseState
     [HideInInspector] public bool breedingDone;
 
     private GameObject partner;
+    private SheepStateMachine context;
     public override void Enter(SheepStateMachine _context)
     {
-        partner = _context.sheepFindPartnerState.partner;
+        context = _context;
+        partner = context.sheepFindPartnerState.partner;
         Invoke("SpawnBabySheep", babySpawnDelay);
     }
     private void SpawnBabySheep()
     {
         if (!lockBabySpawn)
         {
-            partner.GetComponent<SheepBreedState>().lockBabySpawn = true;
-            Vector3 spawnPos = SheepStateMachine.GetMiddlePoint(transform.position, partner.transform.position);
-            SheepStateMachine.spawner.SpawnNewEnemy(spawnPos);
+            if (Vector3.Distance(transform.position, partner.transform.position) < context.sheepFindPartnerState.smellPartnerDistance)
+            {
+                partner.GetComponent<SheepBreedState>().lockBabySpawn = true;
+                Vector3 spawnPos = SheepStateMachine.GetMiddlePoint(transform.position, partner.transform.position);
+                SheepStateMachine.spawner.SpawnNewEnemy(spawnPos);
 
-            breedingDone = true;
-            partner.GetComponent<SheepBreedState>().breedingDone = true;
+                breedingDone = true;
+                partner.GetComponent<SheepBreedState>().breedingDone = true;
+
+            }
+            else
+            {
+                breedingDone = true;
+                partner.GetComponent<SheepBreedState>().breedingDone = true;
+            }
+
         }
     }
     public override void Do(SheepStateMachine _context)

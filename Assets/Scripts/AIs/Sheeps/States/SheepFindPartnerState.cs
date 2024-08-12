@@ -8,7 +8,7 @@ public class SheepFindPartnerState : SheepBaseState
     List<GameObject> availablePartners = new List<GameObject>();
     [HideInInspector] public GameObject partner;
 
-    [SerializeField] private float smellPartnerDistance;
+    [SerializeField] public float smellPartnerDistance;
 
 
     private float timer;
@@ -16,7 +16,7 @@ public class SheepFindPartnerState : SheepBaseState
 
     public override void Enter(SheepStateMachine _context)
     {
-        InvokeRepeating("UpdateAvailablePartners", 0f, 2f);
+        InvokeRepeating("UpdateAvailablePartners", 0f, 0.1f);
     }
     private void UpdateAvailablePartners()
     {

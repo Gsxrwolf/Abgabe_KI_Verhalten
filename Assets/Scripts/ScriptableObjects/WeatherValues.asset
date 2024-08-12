@@ -15,7 +15,7 @@ MonoBehaviour:
   clearEmissionRate: 0
   lightRainEmissionRate: 250
   mediumRainEmissionRate: 2000
-  heavyRainEmissionRate: 20000
+  heavyRainEmissionRate: 10000
   clearGrassSpeed: 0.1
   lightRainGrassSpeed: 0.4
   mediumRainGrassSpeed: 0.8

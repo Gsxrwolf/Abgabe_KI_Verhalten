@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -92,8 +91,11 @@ public class PoolSpawner : MonoBehaviour
             if (NavMesh.SamplePosition(spawnPosition, out hit, 10f, NavMesh.AllAreas))
             {
                 spawnPosition = hit.position;
-                spawnPosition.y += characterHight / 2;
                 newEnemy.transform.position = spawnPosition;
+
+                NavMeshAgent agent = newEnemy.GetComponent<NavMeshAgent>();
+                agent.enabled = true;
+                agent.Warp(spawnPosition);
 
 
                 cacheEnemyList.Remove(newEnemy);
@@ -124,21 +126,20 @@ public class PoolSpawner : MonoBehaviour
 
 
             NavMeshHit hit;
-            if(NavMesh.SamplePosition(spawnPosition, out hit, 10f, NavMesh.AllAreas))
-            {
-                spawnPosition = hit.position;
-                spawnPosition.y += characterHight / 2;
-                newEnemy.transform.position = spawnPosition;
+            NavMesh.SamplePosition(spawnPosition, out hit, 10f, NavMesh.AllAreas);
+
+            spawnPosition = hit.position;
+            newEnemy.transform.position = spawnPosition;
+
+            NavMeshAgent agent = newEnemy.GetComponent<NavMeshAgent>();
+            agent.enabled = true;
+            agent.Warp(spawnPosition);
 
 
-                cacheEnemyList.Remove(newEnemy);
-                newEnemy.SetActive(true);
-                activeEnemyList.Add(newEnemy);
-            }
-            else
-            {
-                SpawnNewEnemy(_spawnPos);
-            }
+
+            cacheEnemyList.Remove(newEnemy);
+            newEnemy.SetActive(true);
+            activeEnemyList.Add(newEnemy);
         }
     }
     private void InstantiateNewEnemies(int amount)
@@ -172,13 +173,15 @@ public class PoolSpawner : MonoBehaviour
         cacheEnemyList.Add(_enemy);
     }
 
-    
+
+    int counter = -1;
     private Vector3 GetNewSpawnPosition()
     {
-        int counter = -1;
         if (SpawndDirect)
         {
             counter++;
+            if (counter >= spawnPoints.Length)
+                counter = 0;
             return spawnPoints[counter].position;
         }
         Vector3 spawnPosition;
