@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WolfWalkState : WolfBaseState
@@ -22,11 +20,11 @@ public class WolfWalkState : WolfBaseState
         GameObject nearestSheep = _context.GetNearestSheep(transform.position);
         if (Vector3.Distance(nearestSheep.transform.position, transform.position) > _context.wolfslowDownDistance)
         {
-            _context.SwitchState(_context.runState);
+            _context.SwitchState(_context.wolfrunState);
         }
         if (Vector3.Distance(nearestSheep.transform.position, transform.position) < _context.wolfhideDistance)
         {
-            _context.SwitchState(_context.stalkState);
+            _context.SwitchState(_context.wolfstalkState);
         }
     }
     public override void Exit(WolfStateMachine _context)

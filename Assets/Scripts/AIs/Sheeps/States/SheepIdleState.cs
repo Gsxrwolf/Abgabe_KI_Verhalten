@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class SheepIdleState : SheepBaseState
@@ -24,7 +23,7 @@ public class SheepIdleState : SheepBaseState
         context = _context;
         System.Random rnd = new System.Random();
         switchDirectionIntervall = rnd.Next(switchDirectionIntervallMin, switchDirectionIntervallMax);
-        breedTime = rnd.Next(breedTimeMin,breedTimeMax);
+        breedTime = rnd.Next(breedTimeMin, breedTimeMax);
         _context.NavigateRandomDestination();
     }
     public override void Do(SheepStateMachine _context)
@@ -48,9 +47,9 @@ public class SheepIdleState : SheepBaseState
     public override void CheckState(SheepStateMachine _context)
     {
         List<GameObject> visibleWolves = _context.CheckFOV(typeof(WolfStateMachine));
-        if(visibleWolves.Count > 0)
+        if (visibleWolves.Count > 0)
             _context.SwitchState(_context.sheepRunState);
-        if(breedingTime)
+        if (breedingTime)
             _context.SwitchState(_context.sheepFindPartnerState);
     }
     public override void Exit(SheepStateMachine _context)

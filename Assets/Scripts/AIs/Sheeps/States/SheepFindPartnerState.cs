@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -43,7 +42,7 @@ public class SheepFindPartnerState : SheepBaseState
         if (availablePartners.Count != 0)
         {
             float temp = Vector3.Distance(_context.transform.position, _context.GetNearestFromAll(availablePartners).transform.position);
-            if (Vector3.Distance(_context.transform.position,_context.GetNearestFromAll(availablePartners).transform.position) < smellPartnerDistance)
+            if (Vector3.Distance(_context.transform.position, _context.GetNearestFromAll(availablePartners).transform.position) < smellPartnerDistance)
             {
                 partner = _context.GetNearestFromAll(availablePartners);
             }

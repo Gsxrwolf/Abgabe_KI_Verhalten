@@ -6,20 +6,17 @@ public class WolfStateMachine : MonoBehaviour
     [HideInInspector] public static GameObject[] sheeps;
     [HideInInspector] public static PoolSpawner spawner;
 
-    public WolfIdleState idleState;
-    public WolfRunState runState;
-    public WolfWalkState walkState;
-    public WolfStalkState stalkState;
-    public WolfAttackState attackState;
+    public WolfIdleState wolfidleState;
+    public WolfRunState wolfrunState;
+    public WolfWalkState wolfwalkState;
+    public WolfStalkState wolfstalkState;
+    public WolfAttackState wolfattackState;
     private WolfBaseState curState;
 
-    [SerializeField] private float health = 10.0f;
     [SerializeField] public float walkSpeed;
     [SerializeField] public float runSpeed;
     [SerializeField] public float stalkSpeed;
 
-    [HideInInspector] public Rigidbody rb;
-    [HideInInspector] public SpriteRenderer sr;
     [HideInInspector] public Animator anim;
     [HideInInspector] public NavMeshAgent agent;
 
@@ -32,8 +29,6 @@ public class WolfStateMachine : MonoBehaviour
 
     void OnEnable()
     {
-        rb = GetComponent<Rigidbody>();
-        sr = GetComponent<SpriteRenderer>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
@@ -41,7 +36,7 @@ public class WolfStateMachine : MonoBehaviour
 
         agent.speed = walkSpeed;
 
-        curState = idleState;
+        curState = wolfidleState;
         curState.Enter(this);
     }
 
@@ -67,8 +62,6 @@ public class WolfStateMachine : MonoBehaviour
 
         curState.Do(this);
         curState.CheckState(this);
-
-        CheckHealth();
     }
 
     private void RotateInRightDirection()
@@ -103,24 +96,5 @@ public class WolfStateMachine : MonoBehaviour
             }
         }
         return nearestSheep;
-    }
-
-    private void CheckHealth()
-    {
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-    public void DealDamage(float _damage)
-    {
-        health -= _damage;
-        Debug.Log("Wolf Damage");
-
-    }
-
-    private void Die()
-    {
-        spawner.DespawnEnemy(this.gameObject);
     }
 }

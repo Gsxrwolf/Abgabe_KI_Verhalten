@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,7 +14,7 @@ public class SheepRunState : SheepBaseState
     {
         Debug.Log("Run");
         startDirection = transform.rotation.eulerAngles.normalized;
-        runDestination = new Vector3(-startDirection.x* runDistance, startDirection.y, -startDirection.z* runDistance);
+        runDestination = new Vector3(-startDirection.x * runDistance, startDirection.y, -startDirection.z * runDistance);
 
         _context.agent.speed = runSpeed;
         _context.agent.SetDestination(runDestination);

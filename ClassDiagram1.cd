@@ -1,189 +1,98 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="PoolSpawner">
-    <Position X="13.75" Y="17.5" Width="1.5" />
+    <Position X="1.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAQAAIAIACABCAEAAABCAAQIAAACAAAEAAQAQIACAFQ=</HashCode>
+      <HashCode>gAQAAIAIACABCAEAAABCAAQIAAACAAEEAAQAQIACAFQ=</HashCode>
       <FileName>Assets\Scripts\AIs\PoolSpawner.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SheepStateMachine">
-    <Position X="25" Y="1.25" Width="1.5" />
+    <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAQCBAQYAAEAARCmIAQAAFQAAABAQhAAAQAAAAgACQA=</HashCode>
+      <HashCode>QAQCBAQYAAEAARCiIAQAAFQAAABAQBAAAQAAAAgACQA=</HashCode>
       <FileName>Assets\Scripts\AIs\Sheeps\SheepStateMachine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SheepBreedState">
-    <Position X="28" Y="9.75" Width="1.5" />
+    <Position X="10.75" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAACAAAAAAAAAIAAAAAAAAACAAEQAAIIAIAACAAAAA=</HashCode>
+      <HashCode>QAACCAAAAAAAAAIAAAAAAAAACAAEQAAIIAIAACAAAAA=</HashCode>
       <FileName>Assets\Scripts\AIs\Sheeps\States\SheepBreedState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SheepFindPartnerState">
-    <Position X="30.25" Y="9.75" Width="1.5" />
+    <Position X="13" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAQACAAAABAAAAIAIAAAAAAACAAEAAAAMAIAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\AIs\Sheeps\States\SheepFindPartnerState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SheepIdleState">
-    <Position X="23.5" Y="9.75" Width="1.5" />
+    <Position X="6.25" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQCAAAAAgAAAAIAIAAAQIIACAAGAAAAKAIAAAAIAAA=</HashCode>
       <FileName>Assets\Scripts\AIs\Sheeps\States\SheepIdleState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SheepRunState">
-    <Position X="25.75" Y="9.75" Width="1.5" />
+    <Position X="8.5" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEIAAAIAAAAAAAAAKAAECAAAIAIAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\AIs\Sheeps\States\SheepRunState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WolfAttackState">
-    <Position X="20.25" Y="16.5" Width="1.5" />
+    <Position X="20" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACCAAAEABAAAIIABAAAAAACAEEAAAAIAIAAAAEAAA=</HashCode>
       <FileName>Assets\Scripts\AIs\Wolfs\States\WolfAttackState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WolfIdleState">
-    <Position X="22.5" Y="16.5" Width="1.5" />
+    <Position X="22.25" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAQCAAAAAABAABIAIAAAAFQACAAEQAAAKAIAAAgIAAA=</HashCode>
       <FileName>Assets\Scripts\AIs\Wolfs\States\WolfIdleState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WolfRunState">
-    <Position X="24.75" Y="16.5" Width="1.5" />
+    <Position X="24.5" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAIAAAAAAAAACAAEAAAAIAIAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\AIs\Wolfs\States\WolfRunState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WolfStalkState">
-    <Position X="15.75" Y="16.5" Width="1.5" />
+    <Position X="15.5" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAIAAAAAAAAACAAEAAAAIAIAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\AIs\Wolfs\States\WolfStalkState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WolfWalkState">
-    <Position X="18" Y="16.5" Width="1.5" />
+    <Position X="17.75" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAIAAAAAAAAACAAEAAAAIAIAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\AIs\Wolfs\States\WolfWalkState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WolfBaseState">
-    <Position X="20.25" Y="13" Width="1.5" />
+    <Position X="20" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAIAAAAAAAAACAAEAAAAIAIAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\AIs\Wolfs\WolfBaseState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WolfStateMachine">
-    <Position X="18.5" Y="9" Width="1.5" />
+    <Position X="17.25" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IgQABAwABCACAQIkMQQgAAEAAADACqAAAQAIAAAACAw=</HashCode>
+      <HashCode>IgQABAgABCAAAQIAMQQgAAEAAADACKAAAQAIAAAACAQ=</HashCode>
       <FileName>Assets\Scripts\AIs\Wolfs\WolfStateMachine.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AudioManager">
-    <Position X="6.5" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAAAAAAAAAAAgIQAAAAAACgQAAAAAAAAEA=</HashCode>
-      <FileName>Assets\Scripts\AudioManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="WeatherStateMachine">
-    <Position X="3" Y="13.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>IAQQAAAEACCAAAAIIAIAAAAAAEBAAAAAAAEIAAEICAI=</HashCode>
-      <FileName>Assets\Scripts\Enviroment\WeatherStateMachine.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Clear">
-    <Position X="4" Y="18.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQCAAAAAAAAAAIAACAAAAAACAAEAACAIAIAAAIAAAA=</HashCode>
-      <FileName>Assets\Scripts\Enviroment\WeatherStates\Clear.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="HeavyRain">
-    <Position X="6.25" Y="18.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQCAAAAIBAAACIAAAAAAAAACAAEAAAAIAIAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Enviroment\WeatherStates\HeavyRain.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="LightRain">
-    <Position X="8.5" Y="18.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AQQCCAAAIAAAAAIAAAAAIAAACAAEAAAAMAIAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Enviroment\WeatherStates\LightRain.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="MediumRain">
-    <Position X="1.75" Y="18.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AQQCCAAAIAAAAAIAAAAAIAAACAAEAAAAMAIAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Enviroment\WeatherStates\MediumRain.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="GameManager">
-    <Position X="6.5" Y="6" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAgIAAACAABAAAAAAAAAAAAAAEAAAAQAAAAAAAAEA=</HashCode>
-      <FileName>Assets\Scripts\GameManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CamController">
-    <Position X="6.75" Y="9.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AFQBBQAAACABAAAAAAAIAAAAAAAAAwAAAEAAAFAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Player\CamController.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DogMovement">
-    <Position X="8.5" Y="9.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAQAgCAAAQAABCAAAAgAAIAAAAAIAQAAAAAAAQA=</HashCode>
-      <FileName>Assets\Scripts\Player\DogMovement.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SceneLoader">
-    <Position X="6.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAGAAAAAAAAAACAAAAAAEAAAAQAAAAAAAAEA=</HashCode>
-      <FileName>Assets\Scripts\SceneLoader.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SaveFile">
-    <Position X="8.25" Y="6.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAAAAAEAAACAAAAAAAEAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\ScriptableObjects\SaveFile.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="WeatherSettings">
-    <Position X="7" Y="14.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAEAQAACAABQAAAAAAAEgAAAAIAAAAAEAgAAAAAIAIA=</HashCode>
-      <FileName>Assets\Scripts\ScriptableObjects\WeatherSettings.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="WeatherBaseState">
-    <Position X="5" Y="15.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAACAAEAAAAIAIAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Enviroment\WeatherBaseState.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="SheepBaseState">
-    <Position X="28" Y="7" Width="1.5" />
+    <Position X="10.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAIAAAAAAAAACAAEAAAAIAIAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\AIs\Sheeps\SheepBaseState.cs</FileName>

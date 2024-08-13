@@ -83,7 +83,7 @@ public class WolfIdleState : WolfBaseState
         }
         if (_context.agent.velocity.magnitude > 0.1f)
         {
-            _context.anim.SetBool("Walk",true);
+            _context.anim.SetBool("Walk", true);
         }
         else
         {
@@ -98,7 +98,7 @@ public class WolfIdleState : WolfBaseState
         GameObject nearestSheep = _context.GetNearestSheep(transform.position);
         if (Vector3.Distance(nearestSheep.transform.position, transform.position) < _context.wolfSmellDistanceToHuntSheep)
         {
-            _context.SwitchState(_context.runState);
+            _context.SwitchState(_context.wolfrunState);
         }
     }
     public override void Exit(WolfStateMachine _context)

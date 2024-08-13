@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 public class SheepStateMachine : MonoBehaviour
 {
@@ -26,15 +23,11 @@ public class SheepStateMachine : MonoBehaviour
     [SerializeField] private float maxZValueForDestination = 565;
     [SerializeField] private float minZValueForDestination = 515;
 
-    [HideInInspector] public Rigidbody2D rb;
-    [HideInInspector] public SpriteRenderer sr;
     [HideInInspector] public Animator anim;
     [HideInInspector] public NavMeshAgent agent;
 
     void OnEnable()
     {
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
@@ -152,9 +145,9 @@ public class SheepStateMachine : MonoBehaviour
     public GameObject GetNearestFromAll(GameObject[] _listOfAll)
     {
         GameObject nearest = _listOfAll.First();
-        foreach(GameObject _object in _listOfAll)
+        foreach (GameObject _object in _listOfAll)
         {
-            if(Vector3.Distance(transform.position, _object.transform.position) < Vector3.Distance(transform.position, nearest.transform.position))
+            if (Vector3.Distance(transform.position, _object.transform.position) < Vector3.Distance(transform.position, nearest.transform.position))
                 nearest = _object;
         }
         return nearest;
