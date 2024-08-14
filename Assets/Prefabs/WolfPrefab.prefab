@@ -242,17 +242,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb054ce94c6f054d92f9acb47cfab1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleState: {fileID: 7359898774191699104}
-  runState: {fileID: 6783549637382422938}
-  walkState: {fileID: 4131152985594179425}
-  stalkState: {fileID: 3338878143701012709}
-  attackState: {fileID: 2555224646890274356}
-  health: 10
+  wolfidleState: {fileID: 7359898774191699104}
+  wolfrunState: {fileID: 6783549637382422938}
+  wolfwalkState: {fileID: 4131152985594179425}
+  wolfstalkState: {fileID: 3338878143701012709}
+  wolfattackState: {fileID: 2555224646890274356}
   walkSpeed: 2
   runSpeed: 4
   stalkSpeed: 1
-  rb: {fileID: 0}
-  sr: {fileID: 0}
   anim: {fileID: 0}
   agent: {fileID: 0}
   wolfSmellDistanceToHuntSheep: 40
