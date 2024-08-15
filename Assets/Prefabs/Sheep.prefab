@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 6756648695413732830}
   - component: {fileID: 2251037140935053210}
   - component: {fileID: 1665970598650590038}
+  - component: {fileID: 5175779891749239593}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -317,6 +318,28 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5175779891749239593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722752057805174878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90a4ce484516c944b463dec50d09987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  furPrefab: {fileID: 8398134048950567431, guid: a7f691f793fc7974388dc533be393c41,
+    type: 3}
+  furDensity: 10
+  furLeangth: 1.5
+  furTexture: {fileID: 2800000, guid: f4c97b032e83e664e8d673820db30919, type: 3}
+  furColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  furCurveStrength: 10
+  furWindMovement: {x: 2, y: 0}
+  furWindDensity: 0.2
+  furWindStrength: 5
 --- !u!1 &7836498861814067753
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +350,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8837032741286712700}
   - component: {fileID: 9097947687138232358}
-  - component: {fileID: 3126291522866170532}
   - component: {fileID: 6467650900959610556}
   - component: {fileID: 51830101095470162}
   - component: {fileID: 3559422423508418971}
@@ -369,7 +391,7 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: -334000983
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -381,27 +403,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!95 &3126291522866170532
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7836498861814067753}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 199046b742df49045aca5fd46ec8d12c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6467650900959610556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,7 +419,7 @@ MonoBehaviour:
   sheepRunState: {fileID: 3559422423508418971}
   sheepFindPartnerState: {fileID: 1829921618152487984}
   sheepBreedState: {fileID: 1492461138846977085}
-  walkSpeed: 3.5
+  walkSpeed: 2.5
   maxXValueForDestination: 575
   minXValueForDestination: 500
   maxZValueForDestination: 565
@@ -453,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f209b9156a8ded48bdc15a708322b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runDistance: 5
+  runDistance: 10
   runSpeed: 5
 --- !u!114 &1829921618152487984
 MonoBehaviour:
@@ -498,7 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrain: {fileID: 0}
-  trailRadius: 0.5
+  trailRadius: 0.3
   recoveryDelay: 5
   recoveryDuration: 3
   trailGrassHeight: 20
