@@ -220,7 +220,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ae788ce45fe96e43ba414f8d458c3b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveFile: {fileID: 0}
+  saveFile: {fileID: 11400000, guid: 540f539f7202ea84b9ad3f5df9a716ba, type: 2}
+  playerName: Player
+  playerScore: 0
+  scoreboard: []
+  scoreBuffer: []
+  qualitySetting: 0
 --- !u!4 &699382698
 Transform:
   m_ObjectHideFlags: 0
@@ -265,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23196275af1b1424fb6ec661ccc83b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSorces: []
+  audioClips: []
   audioMixer: {fileID: 24100000, guid: e1ccb29a7370efc4c92a1a0c2519c984, type: 2}
 --- !u!4 &928743457
 Transform:

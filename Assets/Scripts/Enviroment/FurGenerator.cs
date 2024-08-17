@@ -6,6 +6,7 @@ public class FurGenerator : MonoBehaviour
     [SerializeField] private float furDensity = 10.0f;
     [SerializeField] private float furLeangth = 0.5f;
 
+    [HideInInspector] public bool disableFur = false;
 
     [SerializeField] private Texture2D furTexture;
     [SerializeField] private Color furColor;
@@ -17,6 +18,9 @@ public class FurGenerator : MonoBehaviour
     void Start()
     {
         GetComponent<MeshRenderer>().material.color = furColor;
+
+        if (disableFur) return;
+
         Mesh mesh = GetComponent<MeshFilter>().mesh;
         Vector3[] vertices = mesh.vertices;
         int[] triangles = mesh.triangles;

@@ -17,15 +17,19 @@ public class WolfStalkState : WolfBaseState
     }
     public override void CheckState(WolfStateMachine _context)
     {
-        GameObject nearestSheep = _context.GetNearestSheep(transform.position);
-        Debug.Log(Vector3.Distance(nearestSheep.transform.position, transform.position));
-        if (Vector3.Distance(nearestSheep.transform.position, transform.position) > _context.wolfhideDistance)
+        if (Vector3.Distance(_context.dog.transform.position, transform.position) < _context.wolfEscapedDistance)
         {
-            _context.SwitchState(_context.wolfwalkState);
+            _context.SwitchState(_context.wolfEscapeState);
+            return;
         }
-        if (Vector3.Distance(nearestSheep.transform.position, transform.position) < _context.wolfattackDistance)
+        GameObject nearestSheep = _context.GetNearestSheep(transform.position);
+        if (Vector3.Distance(nearestSheep.transform.position, transform.position) < _context.wolfAttackDistance)
         {
             _context.SwitchState(_context.wolfattackState);
+        }
+        if (Vector3.Distance(nearestSheep.transform.position, transform.position) > _context.wolfHideDistance)
+        {
+            _context.SwitchState(_context.wolfwalkState);
         }
     }
     public override void Exit(WolfStateMachine _context)

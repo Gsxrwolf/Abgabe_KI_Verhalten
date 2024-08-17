@@ -4,13 +4,16 @@ using UnityEngine.AI;
 public class WolfStateMachine : MonoBehaviour
 {
     [HideInInspector] public static GameObject[] sheeps;
-    [HideInInspector] public static PoolSpawner spawner;
+    [HideInInspector] public PoolSpawner spawner;
+
+    [SerializeField] public GameObject dog;
 
     public WolfIdleState wolfidleState;
     public WolfRunState wolfrunState;
     public WolfWalkState wolfwalkState;
     public WolfStalkState wolfstalkState;
     public WolfAttackState wolfattackState;
+    public WolfEscapeState wolfEscapeState;
     private WolfBaseState curState;
 
     [SerializeField] public float walkSpeed;
@@ -23,12 +26,17 @@ public class WolfStateMachine : MonoBehaviour
 
 
     [SerializeField] public float wolfSmellDistanceToHuntSheep = 40f;
-    [SerializeField] public float wolfslowDownDistance = 20f;
-    [SerializeField] public float wolfhideDistance = 10f;
-    [SerializeField] public float wolfattackDistance = 2f;
+    [SerializeField] public float wolfSlowDownDistance = 20f;
+    [SerializeField] public float wolfHideDistance = 10f;
+    [SerializeField] public float wolfAttackDistance = 2f;
+    [SerializeField] public float wolfEscapedDistance = 7f;
+    [SerializeField] public float wolfIsSaveAgainDistance = 20f;
 
     void OnEnable()
     {
+        SheepStateMachine.UpdateSheepList += UpdateSheepList;
+        PoolSpawner.RoundIsOver += RoundOver;
+        dog = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
@@ -39,13 +47,18 @@ public class WolfStateMachine : MonoBehaviour
         curState = wolfidleState;
         curState.Enter(this);
     }
+    private void OnDisable()
+    {
+        SheepStateMachine.UpdateSheepList -= UpdateSheepList;
+        PoolSpawner.RoundIsOver -= RoundOver;
+    }
 
     private void Start()
     {
         UpdateSheepList();
     }
 
-    public static void UpdateSheepList()
+    public void UpdateSheepList()
     {
         sheeps = spawner.referenceOfOtherSpawner.activeEnemyList.ToArray();
     }
@@ -72,6 +85,10 @@ public class WolfStateMachine : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(direction);
             transform.rotation = lookRotation;
         }
+    }
+    private void RoundOver()
+    {
+        SwitchState(wolfidleState);
     }
 
     public void SwitchState(WolfBaseState _newState)

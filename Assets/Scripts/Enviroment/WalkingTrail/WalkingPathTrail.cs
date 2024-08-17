@@ -11,7 +11,7 @@ public class WalkingPathTrail : MonoBehaviour
     [SerializeField] private float recoveryDuration = 3.0f;
 
     [SerializeField, Range(0, 255)] private int trailGrassHeight;
-    [SerializeField, Range(0, 255)] private int normalGrassHeight;
+    [SerializeField, Range(0, 255)] public static int normalGrassHeight = 255;
 
     private TerrainData terrainData;
     private List<TrailRecord> trailRecords = new List<TrailRecord>();
@@ -82,10 +82,8 @@ public class WalkingPathTrail : MonoBehaviour
 
         trailRecords.RemoveAll(r => r.mapX == mapX && r.mapZ == mapZ);
     }
-
-    private void OnDestroy()
+    private void OnDisable()
     {
-        // Setzt das Gras in allen gespeicherten Bereichen zurück
         foreach (TrailRecord record in trailRecords)
         {
             int[,] details = record.details;

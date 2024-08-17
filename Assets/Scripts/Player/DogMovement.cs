@@ -10,8 +10,11 @@ public class DogMovement : MonoBehaviour
     private NavMeshAgent agent;
 
     private bool following;
+
+    [SerializeField] private float normalSpeed;
+    [SerializeField] private float followingSpeed;
+
     [SerializeField] private float maxFollowDistance;
-    [SerializeField] private float attackRange;
 
 
     private GameObject targetWolf;
@@ -20,7 +23,7 @@ public class DogMovement : MonoBehaviour
         CamController.newDogDestination += SetDogDestination;
         CamController.followWolf += FollowWolf;
         agent = GetComponent<NavMeshAgent>();
-        agent.stoppingDistance = attackRange;
+        agent.speed = normalSpeed;
         anim = GetComponent<Animator>();
     }
     private void OnDisable()
@@ -37,22 +40,16 @@ public class DogMovement : MonoBehaviour
             {
                 return;
             }
-            if(Vector3.Distance(transform.position, targetWolf.transform.position) < attackRange)
-            {
-                Attack();
-            }
             agent.SetDestination(targetWolf.transform.position);
+            agent.speed = followingSpeed;
         }
-    }
-
-    private void Attack()
-    {
-        following = false;
     }
 
     private void SetDogDestination(Vector3 _newDes)
     {
+        following = false;
         agent.SetDestination(_newDes);
+        agent.speed = normalSpeed;
     }
     private void FollowWolf(GameObject _targetWolf)
     {

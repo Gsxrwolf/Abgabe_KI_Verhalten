@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -30,13 +31,16 @@ public class PoolSpawner : MonoBehaviour
     private List<GameObject> cacheEnemyList = new List<GameObject>();
 
     [SerializeField] private float characterHight;
+    [HideInInspector] public bool disableFur = false;
 
 
+    public static event Action RoundIsOver;
 
-    private bool wait;
+
+    private bool startIsDone;
     void Start()
     {
-        wait = true;
+        startIsDone = false;
         Invoke("LateStart", delayedStartTime);
     }
 
@@ -50,12 +54,12 @@ public class PoolSpawner : MonoBehaviour
                 SpawnNewEnemy();
             }
         }
-        wait = false;
+        startIsDone = true;
     }
 
     void Update()
     {
-        if (wait)
+        if (!startIsDone)
         {
             return;
         }
@@ -101,6 +105,15 @@ public class PoolSpawner : MonoBehaviour
                 cacheEnemyList.Remove(newEnemy);
                 newEnemy.SetActive(true);
                 activeEnemyList.Add(newEnemy);
+
+                SheepStateMachine temp;
+                if (newEnemy.TryGetComponent<SheepStateMachine>(out temp))
+                    GameManager.Instance.AddPointsForSheepSpawn();
+
+
+                WolfStateMachine temp2;
+                if (newEnemy.TryGetComponent<WolfStateMachine>(out temp2))
+                    GameManager.Instance.AddPointsForWolfSpawn();
             }
             else
             {
@@ -147,18 +160,25 @@ public class PoolSpawner : MonoBehaviour
         for (int i = 0; i < enemyStartAmount; i++)
         {
             GameObject newEnemy;
-            NavMeshHit hit;
             newEnemy = Instantiate(enemyPrefab, cachePosition, transform.rotation, transform);
             newEnemy.SetActive(false);
 
 
-            WolfStateMachine wolfState;
-            SheepStateMachine sheepState;
+            WolfStateMachine wolfStateMachine;
+            SheepStateMachine sheepStateMachine;
+            FurGenerator furGenerator;
 
-            if (newEnemy.TryGetComponent<WolfStateMachine>(out wolfState))
-                WolfStateMachine.spawner = this;
-            if (newEnemy.TryGetComponent<SheepStateMachine>(out sheepState))
+            if (newEnemy.TryGetComponent<WolfStateMachine>(out wolfStateMachine))
+                wolfStateMachine.spawner = this;
+            if (newEnemy.TryGetComponent<SheepStateMachine>(out sheepStateMachine))
+            {
                 SheepStateMachine.spawner = this;
+                GameObject bodyObj = sheepStateMachine.gameObject.transform.GetChild(2).gameObject;
+                if (bodyObj.TryGetComponent<FurGenerator>(out furGenerator))
+                    furGenerator.disableFur = disableFur;
+            }
+
+
 
             cacheEnemyList.Add(newEnemy);
         }
@@ -167,10 +187,20 @@ public class PoolSpawner : MonoBehaviour
     {
         activeEnemyList.Remove(_enemy);
 
+        _enemy.SetActive(false);
         _enemy.GetComponent<NavMeshAgent>().enabled = false;
         _enemy.transform.position = cachePosition;
-        _enemy.SetActive(false);
         cacheEnemyList.Add(_enemy);
+
+        if(activeEnemyList.Count <= 1)
+        {
+            SheepStateMachine sheepStateMachine;
+            if (_enemy.TryGetComponent<SheepStateMachine>(out sheepStateMachine))
+            {
+                GameManager.Instance.lockScore = true;
+                RoundIsOver?.Invoke();
+            }
+        }
     }
 
 

@@ -28,7 +28,7 @@ public class WolfAttackState : WolfBaseState
     {
         GameObject target = context.GetNearestSheep(transform.position);
 
-        if (Vector3.Distance(transform.position, target.transform.position) < 3f)
+        if (Vector3.Distance(transform.position, target.transform.position) < 5f)
         {
             target.GetComponent<SheepStateMachine>().DealDamage();
         }

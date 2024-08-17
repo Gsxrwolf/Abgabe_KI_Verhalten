@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,8 +16,8 @@ public class SheepStateMachine : MonoBehaviour
     public SheepBaseState CurState { get { return curState; } }
 
     [SerializeField] public float walkSpeed;
-    [SerializeField] public const float viewRange = 2f;
-    [Range(0, 360)][SerializeField] public const float viewAngle = 50f;
+    [SerializeField] public const float viewRange = 5f;
+    [Range(0, 360)][SerializeField] public const float viewAngle = 80f;
 
     [SerializeField] private float maxXValueForDestination = 575;
     [SerializeField] private float minXValueForDestination = 500;
@@ -25,6 +26,9 @@ public class SheepStateMachine : MonoBehaviour
 
     [HideInInspector] public Animator anim;
     [HideInInspector] public NavMeshAgent agent;
+
+
+    public static event Action UpdateSheepList;
 
     void OnEnable()
     {
@@ -171,6 +175,6 @@ public class SheepStateMachine : MonoBehaviour
     private void Die()
     {
         spawner.DespawnEnemy(this.gameObject);
-        WolfStateMachine.UpdateSheepList();
+        UpdateSheepList?.Invoke();
     }
 }

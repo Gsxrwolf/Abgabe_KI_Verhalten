@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,11 +30,13 @@ public class WolfIdleState : WolfBaseState
     }
     private void NavigateRandomDestination()
     {
-        if (context.agent.isOnNavMesh)
+        if (context.agent.isOnNavMesh && context.agent.enabled == true)
         {
             context.agent.SetDestination(GetRandomDestination());
         }
     }
+
+    int errorCounter = 0;
     private Vector3 GetRandomDestination()
     {
         Vector3 destination;
@@ -48,6 +51,7 @@ public class WolfIdleState : WolfBaseState
 
         if (InvalidDestination(targetPos))
         {
+            errorCounter++;
             return GetRandomDestination();
         }
         NavMeshHit hit;
@@ -55,10 +59,14 @@ public class WolfIdleState : WolfBaseState
         {
             return hit.position;
         }
-        else
+
+        if(errorCounter > 100)
         {
-            return GetRandomDestination();
+            errorCounter = 0;
+            context.spawner.DespawnEnemy(gameObject);
+            return Vector3.zero;
         }
+        return Vector3.zero;
     }
     private bool InvalidDestination(Vector3 _destination)
     {
@@ -95,6 +103,11 @@ public class WolfIdleState : WolfBaseState
     }
     public override void CheckState(WolfStateMachine _context)
     {
+        if (Vector3.Distance(_context.dog.transform.position, transform.position) < _context.wolfEscapedDistance)
+        {
+            _context.SwitchState(_context.wolfEscapeState);
+            return;
+        }
         GameObject nearestSheep = _context.GetNearestSheep(transform.position);
         if (Vector3.Distance(nearestSheep.transform.position, transform.position) < _context.wolfSmellDistanceToHuntSheep)
         {

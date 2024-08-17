@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class SheepFindPartnerState : SheepBaseState
 {
@@ -47,7 +46,7 @@ public class SheepFindPartnerState : SheepBaseState
                 partner = _context.GetNearestFromAll(availablePartners);
             }
         }
-        if (partner != null)
+        if (partner != null && Vector3.Distance(_context.transform.position, _context.GetNearestFromAll(availablePartners).transform.position) < smellPartnerDistance)
         {
             _context.agent.SetDestination(SheepStateMachine.GetMiddlePoint(transform.position, partner.transform.position));
         }
@@ -60,7 +59,7 @@ public class SheepFindPartnerState : SheepBaseState
         List<GameObject> visibleWolves = _context.CheckFOV(typeof(WolfStateMachine));
         if (visibleWolves.Count > 0)
             _context.SwitchState(_context.sheepRunState);
-        if (partner != null && _context.agent.pathStatus == NavMeshPathStatus.PathComplete)
+        if (partner != null && !_context.agent.pathPending && _context.agent.remainingDistance <= _context.agent.stoppingDistance && (!_context.agent.hasPath || _context.agent.velocity.sqrMagnitude == 0f))
             _context.SwitchState(_context.sheepBreedState);
     }
     public override void Exit(SheepStateMachine _context)

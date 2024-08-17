@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 public enum MyScenes
 {
     InitScene,
+    MainMenu,
+    MainSettings,
+    MainScoreBoard,
     MainGame
 }
 public class SceneLoader : MonoBehaviour
@@ -30,7 +33,7 @@ public class SceneLoader : MonoBehaviour
     }
     public void LoadScene(MyScenes scene, LoadSceneMode _loadSceneMode = LoadSceneMode.Single)
     {
-        SceneManager.LoadScene((int)scene, _loadSceneMode);
+        SceneManager.LoadSceneAsync((int)scene, _loadSceneMode);
     }
     public void UnloadScene(MyScenes scene)
     {

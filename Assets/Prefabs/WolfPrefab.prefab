@@ -180,6 +180,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3521474661304654783}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eb5a6c0985e26eb4fb4442709793397a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2834163000600653856}
   m_SourcePrefab: {fileID: 100100000, guid: eb5a6c0985e26eb4fb4442709793397a, type: 3}
 --- !u!1 &4555088497965763763 stripped
 GameObject:
@@ -242,20 +246,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb054ce94c6f054d92f9acb47cfab1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dog: {fileID: 0}
   wolfidleState: {fileID: 7359898774191699104}
   wolfrunState: {fileID: 6783549637382422938}
   wolfwalkState: {fileID: 4131152985594179425}
   wolfstalkState: {fileID: 3338878143701012709}
   wolfattackState: {fileID: 2555224646890274356}
+  wolfEscapeState: {fileID: 2834163000600653856}
   walkSpeed: 2
   runSpeed: 4
   stalkSpeed: 1
   anim: {fileID: 0}
   agent: {fileID: 0}
   wolfSmellDistanceToHuntSheep: 40
-  wolfslowDownDistance: 20
-  wolfhideDistance: 10
-  wolfattackDistance: 3
+  wolfSlowDownDistance: 20
+  wolfHideDistance: 10
+  wolfAttackDistance: 2
+  wolfEscapedDistance: 10
+  wolfIsSaveAgainDistance: 50
 --- !u!114 &7359898774191699104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,3 +351,15 @@ MonoBehaviour:
   recoveryDuration: 5
   trailGrassHeight: 54
   normalGrassHeight: 255
+--- !u!114 &2834163000600653856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4555088497965763763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7008fe19fc5f8384e81024e3ba02d4b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
