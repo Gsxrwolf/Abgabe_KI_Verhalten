@@ -63,7 +63,7 @@ public class WolfAttackState : WolfBaseState
     {
         if (!isAttacking)
         {
-            _context.SwitchState(_context.wolfidleState);
+            _context.SwitchState(_context.wolfIdleState);
         }
     }
     public override void Exit(WolfStateMachine _context)

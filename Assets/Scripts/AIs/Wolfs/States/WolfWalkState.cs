@@ -25,11 +25,11 @@ public class WolfWalkState : WolfBaseState
         GameObject nearestSheep = _context.GetNearestSheep(transform.position);
         if (Vector3.Distance(nearestSheep.transform.position, transform.position) > _context.wolfSlowDownDistance)
         {
-            _context.SwitchState(_context.wolfrunState);
+            _context.SwitchState(_context.wolfRunState);
         }
         if (Vector3.Distance(nearestSheep.transform.position, transform.position) < _context.wolfHideDistance)
         {
-            _context.SwitchState(_context.wolfstalkState);
+            _context.SwitchState(_context.wolfStalkState);
         }
     }
     public override void Exit(WolfStateMachine _context)

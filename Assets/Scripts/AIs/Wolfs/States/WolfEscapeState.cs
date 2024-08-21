@@ -21,7 +21,7 @@ public class WolfEscapeState : WolfBaseState
     {
         if (!_context.agent.pathPending && (!_context.agent.hasPath))
         {
-            _context.SwitchState(_context.wolfidleState);
+            _context.SwitchState(_context.wolfIdleState);
         }
     }
     public override void Exit(WolfStateMachine _context)

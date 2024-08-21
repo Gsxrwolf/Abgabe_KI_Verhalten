@@ -111,7 +111,7 @@ public class WolfIdleState : WolfBaseState
         GameObject nearestSheep = _context.GetNearestSheep(transform.position);
         if (Vector3.Distance(nearestSheep.transform.position, transform.position) < _context.wolfSmellDistanceToHuntSheep)
         {
-            _context.SwitchState(_context.wolfrunState);
+            _context.SwitchState(_context.wolfRunState);
         }
     }
     public override void Exit(WolfStateMachine _context)

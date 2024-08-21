@@ -8,11 +8,11 @@ public class WolfStateMachine : MonoBehaviour
 
     [SerializeField] public GameObject dog;
 
-    public WolfIdleState wolfidleState;
-    public WolfRunState wolfrunState;
-    public WolfWalkState wolfwalkState;
-    public WolfStalkState wolfstalkState;
-    public WolfAttackState wolfattackState;
+    public WolfIdleState wolfIdleState;
+    public WolfRunState wolfRunState;
+    public WolfWalkState wolfWalkState;
+    public WolfStalkState wolfStalkState;
+    public WolfAttackState wolfAttackState;
     public WolfEscapeState wolfEscapeState;
     private WolfBaseState curState;
 
@@ -44,7 +44,7 @@ public class WolfStateMachine : MonoBehaviour
 
         agent.speed = walkSpeed;
 
-        curState = wolfidleState;
+        curState = wolfIdleState;
         curState.Enter(this);
     }
     private void OnDisable()
@@ -88,7 +88,7 @@ public class WolfStateMachine : MonoBehaviour
     }
     private void RoundOver()
     {
-        SwitchState(wolfidleState);
+        SwitchState(wolfIdleState);
     }
 
     public void SwitchState(WolfBaseState _newState)
