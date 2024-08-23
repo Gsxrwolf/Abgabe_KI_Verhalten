@@ -27,6 +27,11 @@ public class PoolSpawner : MonoBehaviour
 
     [SerializeField] private Vector3 cachePosition;
 
+    [SerializeField] private float maxXValueForSpawn = 630;
+    [SerializeField] private float minXValueForSpawn = 450;
+    [SerializeField] private float maxZValueForSpawn = 630;
+    [SerializeField] private float minZValueForSpawn = 480;
+
     public List<GameObject> activeEnemyList = new List<GameObject>();
     private List<GameObject> cacheEnemyList = new List<GameObject>();
 
@@ -83,12 +88,13 @@ public class PoolSpawner : MonoBehaviour
             {
                 InstantiateNewEnemies(enemyRefillAmount);
             }
-            newEnemy = cacheEnemyList.First();
             Vector3 spawnPosition = GetNewSpawnPosition();
-            if (spawnPosition == Vector3.zero && spawnPosition == cachePosition)
+            if (spawnPosition == Vector3.zero && spawnPosition == cachePosition &&InvalidPos (spawnPosition))
             {
                 return;
             }
+            newEnemy = cacheEnemyList.First();
+            
 
 
             NavMeshHit hit;
@@ -120,6 +126,19 @@ public class PoolSpawner : MonoBehaviour
                 SpawnNewEnemy();
             }
         }
+    }
+    private bool InvalidPos(Vector3 _destination)
+    {
+        if (_destination.x > maxXValueForSpawn)
+            return true;
+        if (_destination.x < minXValueForSpawn)
+            return true;
+        if (_destination.z > maxZValueForSpawn)
+            return true;
+        if (_destination.z < minZValueForSpawn)
+            return true;
+
+        return false;
     }
     public void SpawnNewEnemy(Vector3 _spawnPos)
     {
@@ -199,23 +218,16 @@ public class PoolSpawner : MonoBehaviour
             {
                 GameManager.Instance.lockScore = true;
                 RoundIsOver?.Invoke();
+                Time.timeScale = 0f;
             }
         }
     }
 
 
-    int counter = -1;
     private Vector3 GetNewSpawnPosition()
     {
-        if (SpawndDirect)
-        {
-            counter++;
-            if (counter >= spawnPoints.Length)
-                counter = 0;
-            return spawnPoints[counter].position;
-        }
-        Vector3 spawnPosition;
         System.Random rnd = new System.Random();
+        Vector3 spawnPosition;
 
         spawnPosition = spawnPoints[rnd.Next(spawnPoints.Length)].position;
         return spawnPosition;

@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //Load();
-        //LoadSavedSettings();
+        Load();
+        LoadSavedSettings();
     }
     private void LoadSavedSettings()
     {
@@ -40,7 +40,14 @@ public class GameManager : MonoBehaviour
 
     public void Save()
     {
-        var filePath = Application.persistentDataPath + "/VCG/savefiles.txt";
+        var filePath = Application.persistentDataPath + "/VCG/savefiles.json";
+        var directoryPath = Path.GetDirectoryName(filePath);
+
+        if (!Directory.Exists(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+
         var data = JsonUtility.ToJson(saveFile);
 
         using (StreamWriter writer = File.CreateText(filePath))
@@ -48,14 +55,19 @@ public class GameManager : MonoBehaviour
             writer.Write(data);
         }
     }
+
     public void Load()
     {
-        var filePath = Application.persistentDataPath + "/VCG/savefiles.txt";
+        var filePath = Application.persistentDataPath + "/VCG/savefiles.json";
+        var directoryPath = Path.GetDirectoryName(filePath);
 
-        using (StreamReader reader = File.OpenText(filePath))
+        if (Directory.Exists(directoryPath))
         {
-            var data = reader.ReadToEnd();
-            JsonUtility.FromJsonOverwrite(data, saveFile);
+            using (StreamReader reader = File.OpenText(filePath))
+            {
+                var data = reader.ReadToEnd();
+                JsonUtility.FromJsonOverwrite(data, saveFile);
+            }
         }
     }
 
@@ -67,9 +79,11 @@ public class GameManager : MonoBehaviour
     {
         if (saveFile.playerScore != 0)
         {
-            saveFile.scoreBuffer.Add(new Round(saveFile.playerName, saveFile.playerScore));
+            saveFile.scoreBufferName.Add(saveFile.playerName);
+            saveFile.scoreBufferValue.Add(saveFile.playerScore);
             ResetRoundScore();
             lockScore = false;
+            Save();
         }
     }
     private void LockScore()

@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c86bf997eb42054687a1754f4fa337d, type: 3}
   m_Name: SaveValues
   m_EditorClassIdentifier: 
-  volumeMaster: -0
-  volumeMusic: -0
-  qualitySetting: 1
-  playerName: Gsxrwolf
+  volumeMaster: 1
+  volumeMusic: 1
+  qualitySetting: 0
+  playerName: Player
   playerScore: 0
-  scoreboard: []
-  scoreBuffer: []
+  scoreboardName: []
+  scoreboardValue: 
+  scoreBufferName: []
+  scoreBufferValue: 

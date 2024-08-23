@@ -246,12 +246,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb054ce94c6f054d92f9acb47cfab1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawner: {fileID: 0}
   dog: {fileID: 0}
-  wolfidleState: {fileID: 7359898774191699104}
-  wolfrunState: {fileID: 6783549637382422938}
-  wolfwalkState: {fileID: 4131152985594179425}
-  wolfstalkState: {fileID: 3338878143701012709}
-  wolfattackState: {fileID: 2555224646890274356}
+  wolfIdleState: {fileID: 7359898774191699104}
+  wolfRunState: {fileID: 6783549637382422938}
+  wolfWalkState: {fileID: 4131152985594179425}
+  wolfStalkState: {fileID: 3338878143701012709}
+  wolfAttackState: {fileID: 2555224646890274356}
   wolfEscapeState: {fileID: 2834163000600653856}
   walkSpeed: 2
   runSpeed: 4
@@ -350,7 +351,6 @@ MonoBehaviour:
   recoveryDelay: 3
   recoveryDuration: 5
   trailGrassHeight: 54
-  normalGrassHeight: 255
 --- !u!114 &2834163000600653856
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,20 +12,24 @@ public class PauseUI : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            paused = !paused;
-        }
-        if (paused)
-        {
-            pauseUIToggel.SetActive(true);
-            Time.timeScale = 0.0f;
-        }
-        else
-        {
-            pauseUIToggel.SetActive(false);
-            Time.timeScale = 1.0f;
+            if (paused) Unpause();
+            else Pause();
         }
     }
 
+    private void Unpause()
+    {
+        paused = false;
+        pauseUIToggel.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
+
+    private void Pause()
+    {   
+        paused = true;
+        pauseUIToggel.SetActive(true);
+        Time.timeScale = 0.0f;
+    }
 
     public void OnQuitButton()
     {
@@ -38,7 +42,7 @@ public class PauseUI : MonoBehaviour
     }
     public void OnXButton()
     {
-        paused = false;
+        Unpause();
     }
     public void OnMenuButton()
     {

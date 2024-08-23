@@ -6,6 +6,12 @@ public class SheepBreedState : SheepBaseState
     [HideInInspector] public bool lockBabySpawn;
     [HideInInspector] public bool breedingDone;
 
+
+    [SerializeField] private float maxXValueForSpawn = 630;
+    [SerializeField] private float minXValueForSpawn = 450;
+    [SerializeField] private float maxZValueForSpawn = 630;
+    [SerializeField] private float minZValueForSpawn = 480;
+
     private GameObject partner;
     private SheepStateMachine context;
     public override void Enter(SheepStateMachine _context)
@@ -22,7 +28,8 @@ public class SheepBreedState : SheepBaseState
             {
                 partner.GetComponent<SheepBreedState>().lockBabySpawn = true;
                 Vector3 spawnPos = SheepStateMachine.GetMiddlePoint(transform.position, partner.transform.position);
-                SheepStateMachine.spawner.SpawnNewEnemy(spawnPos);
+
+                if(!InvalidPos(spawnPos)) SheepStateMachine.spawner.SpawnNewEnemy(spawnPos);
 
                 breedingDone = true;
                 partner.GetComponent<SheepBreedState>().breedingDone = true;
@@ -35,6 +42,19 @@ public class SheepBreedState : SheepBaseState
             }
 
         }
+    }
+    private bool InvalidPos(Vector3 _destination)
+    {
+        if (_destination.x > maxXValueForSpawn)
+            return true;
+        if (_destination.x < minXValueForSpawn)
+            return true;
+        if (_destination.z > maxZValueForSpawn)
+            return true;
+        if (_destination.z < minZValueForSpawn)
+            return true;
+
+        return false;
     }
     public override void Do(SheepStateMachine _context)
     {

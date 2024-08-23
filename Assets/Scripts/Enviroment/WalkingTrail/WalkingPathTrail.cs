@@ -6,6 +6,7 @@ using UnityEngine;
 public class WalkingPathTrail : MonoBehaviour
 {
     [SerializeField] private Terrain terrain;
+    [SerializeField] private TerrainData backUpTerrainData;
     [SerializeField] private float trailRadius = 1.0f;
     [SerializeField] private float recoveryDelay = 5.0f;
     [SerializeField] private float recoveryDuration = 3.0f;
@@ -82,23 +83,15 @@ public class WalkingPathTrail : MonoBehaviour
 
         trailRecords.RemoveAll(r => r.mapX == mapX && r.mapZ == mapZ);
     }
+
     private void OnDisable()
     {
-        foreach (TrailRecord record in trailRecords)
+        if (backUpTerrainData != null)
         {
-            int[,] details = record.details;
-
-            for (int x = 0; x < record.radius * 2; x++)
+            for (int i = 0; i < terrainData.detailPrototypes.Length; i++)
             {
-                for (int z = 0; z < record.radius * 2; z++)
-                {
-                    details[x, z] = normalGrassHeight;
-                }
+                terrainData.SetDetailLayer(0, 0, i, backUpTerrainData.GetDetailLayer(0, 0, terrainData.detailWidth, terrainData.detailHeight, i));
             }
-
-            terrainData.SetDetailLayer(record.mapX, record.mapZ, 0, details);
         }
-
-        trailRecords.Clear();
     }
 }

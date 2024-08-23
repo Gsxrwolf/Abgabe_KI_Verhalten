@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -39,7 +40,7 @@ public class ObstaclesGeneratorWindow : EditorWindow
         {
             EditorGUILayout.Space();
 
-            // Terrain field
+            
             EditorGUILayout.LabelField("Terrain", EditorStyles.boldLabel);
             terrain = (Terrain)EditorGUILayout.ObjectField(terrain, typeof(Terrain), true);
             if (terrain != lastTerrain)
@@ -56,7 +57,6 @@ public class ObstaclesGeneratorWindow : EditorWindow
             {
                 EditorGUILayout.Space();
 
-                // Get obstacle names from the terrain
                 if (obstacleNames == null)
                 {
                     obstacleNames = new List<string>();
@@ -67,21 +67,18 @@ public class ObstaclesGeneratorWindow : EditorWindow
                     selectedObstacles = new List<string>();
                 }
 
-                // Dropdown for selecting obstacles
                 EditorGUILayout.LabelField("Obstacles to take into account", EditorStyles.boldLabel);
 
                 if (EditorGUILayout.DropdownButton(new GUIContent("Select Obstacles"), FocusType.Keyboard))
                 {
                     GenericMenu menu = new GenericMenu();
 
-                    // Option to select all
                     menu.AddItem(new GUIContent("Everything"), false, () =>
                     {
                         selectedObstacles.Clear();
                         selectedObstacles.AddRange(obstacleNames);
                     });
 
-                    // Option to deselect all
                     menu.AddItem(new GUIContent("Nothing"), false, () =>
                     {
                         selectedObstacles.Clear();
@@ -89,7 +86,6 @@ public class ObstaclesGeneratorWindow : EditorWindow
 
                     menu.AddSeparator("");
 
-                    // Options to select individual obstacles
                     foreach (var obstacleName in obstacleNames)
                     {
                         bool isSelected = selectedObstacles.Contains(obstacleName);
@@ -111,7 +107,6 @@ public class ObstaclesGeneratorWindow : EditorWindow
 
                 EditorGUILayout.Space();
 
-                // Display selected obstacles
                 if (selectedObstacles.Count > 0)
                 {
                     EditorGUILayout.LabelField("Selected Obstacles:", EditorStyles.boldLabel);
@@ -185,7 +180,7 @@ public class ObstaclesGeneratorWindow : EditorWindow
                         return;
                     }
 
-                    SetTerrainObstaclesStatic.GenerateTreeObstacles(terrain, selectedObstacles.ToArray(), center, size);
+                    ObstaclesGenerator.GenerateTreeObstacles(terrain, selectedObstacles.ToArray(), center, size);
                 }
                 EditorGUILayout.Space(20);
             }
@@ -196,3 +191,4 @@ public class ObstaclesGeneratorWindow : EditorWindow
 
 
 }
+#endif

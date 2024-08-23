@@ -6,7 +6,7 @@ public class WolfStateMachine : MonoBehaviour
     [HideInInspector] public static GameObject[] sheeps;
     [HideInInspector] public PoolSpawner spawner;
 
-    [SerializeField] public GameObject dog;
+    [HideInInspector] public GameObject dog;
 
     public WolfIdleState wolfIdleState;
     public WolfRunState wolfRunState;

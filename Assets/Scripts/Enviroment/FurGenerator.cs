@@ -46,16 +46,16 @@ public class FurGenerator : MonoBehaviour
         }
     }
 
-    void GenerateFurOnEdge(Vector3 _v0, Vector3 v_1, Vector3 _n0, Vector3 _n1)
+    void GenerateFurOnEdge(Vector3 _v0, Vector3 _v1, Vector3 _n0, Vector3 _n1)
     {
-        float edgeLength = Vector3.Distance(_v0, v_1);
+        float edgeLength = Vector3.Distance(_v0, _v1);
 
         int adjustedDensity = Mathf.Max(1, Mathf.RoundToInt(edgeLength * furDensity));
 
         for (int i = 0; i <= adjustedDensity; i++)
         {
             float t = i / (float)adjustedDensity;
-            Vector3 position = Vector3.Lerp(_v0, v_1, t);
+            Vector3 position = Vector3.Lerp(_v0, _v1, t);
             Vector3 normal = Vector3.Lerp(_n0, _n1, t).normalized;
 
             Vector3 worldPosition = transform.TransformPoint(position);

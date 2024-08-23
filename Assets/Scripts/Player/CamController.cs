@@ -31,23 +31,23 @@ public class CamController : MonoBehaviour
         float distanceMultiplyer = ((transform.position.y / 80) - 0.3f) * 3.33f;
         if (Input.GetKey(KeyCode.W))
         {
-            if (CheckPos(transform.position + Vector3.forward * speed * distanceMultiplyer))
-                transform.position += Vector3.forward * speed * distanceMultiplyer;
+            if (CheckPos(transform.position + Vector3.forward * speed * distanceMultiplyer * (Time.deltaTime * 15)))
+                transform.position += Vector3.forward * speed * distanceMultiplyer * (Time.deltaTime*15);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            if (CheckPos(transform.position + Vector3.left * speed * distanceMultiplyer))
-                transform.position += Vector3.left * speed * distanceMultiplyer;
+            if (CheckPos(transform.position + Vector3.left * speed * distanceMultiplyer * (Time.deltaTime * 15)))
+                transform.position += Vector3.left * speed * distanceMultiplyer * (Time.deltaTime * 15);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            if (CheckPos(transform.position + Vector3.back * speed * distanceMultiplyer))
-                transform.position += Vector3.back * speed * distanceMultiplyer;
+            if (CheckPos(transform.position + Vector3.back * speed * distanceMultiplyer * (Time.deltaTime * 15)))
+                transform.position += Vector3.back * speed * distanceMultiplyer * (Time.deltaTime * 15);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            if (CheckPos(transform.position + Vector3.right * speed * distanceMultiplyer))
-                transform.position += Vector3.right * speed * distanceMultiplyer;
+            if (CheckPos(transform.position + Vector3.right * speed * distanceMultiplyer * (Time.deltaTime * 15)))
+                transform.position += Vector3.right * speed * distanceMultiplyer * (Time.deltaTime * 15);
         }
         if (Input.mouseScrollDelta != Vector2.zero)
         {

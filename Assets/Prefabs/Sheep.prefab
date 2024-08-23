@@ -273,7 +273,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: da7f44155e4144949bc2e4890343f143, type: 2}
+  - {fileID: 2100000, guid: d01b13fe4de82174da73c64665f559bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -487,6 +487,10 @@ MonoBehaviour:
   babySpawnDelay: 4
   lockBabySpawn: 0
   breedingDone: 0
+  maxXValueForSpawn: 630
+  minXValueForSpawn: 450
+  maxZValueForSpawn: 630
+  minZValueForSpawn: 480
 --- !u!114 &2065814789171477355
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,9 +22,16 @@ public class ScoreBoardManager : MonoBehaviour
             nameTextFields.Add(contents[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>());
             scoreTextFields.Add(contents[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>());
         }
-
-        curScoreBuffer = GameManager.Instance.saveFile.scoreBuffer;
-        lastScoreboard = GameManager.Instance.saveFile.scoreboard;
+        for(int i = 0; i < GameManager.Instance.saveFile.scoreBufferName.Count; i++)
+        {
+            Round newRoundData = new Round(GameManager.Instance.saveFile.scoreBufferName[i], GameManager.Instance.saveFile.scoreBufferValue[i]);
+            curScoreBuffer.Add(newRoundData);
+        }
+        for (int i = 0; i < GameManager.Instance.saveFile.scoreboardName.Count; i++)
+        {
+            Round newRoundData = new Round(GameManager.Instance.saveFile.scoreboardName[i], GameManager.Instance.saveFile.scoreboardValue[i]);
+            lastScoreboard.Add(newRoundData);
+        }
         foreach (Round processedScore in curScoreBuffer)
         {
             if (CheckIfScoreboardHasEmptySlots())
@@ -46,6 +53,18 @@ public class ScoreBoardManager : MonoBehaviour
         PrintUpdatedScoreBoardToText();
     }
 
+    public void OnClearScoreboard()
+    {
+        GameManager.Instance.saveFile.scoreboardName.Clear();
+        GameManager.Instance.saveFile.scoreboardValue.Clear();
+        GameManager.Instance.saveFile.scoreBufferName.Clear();
+        GameManager.Instance.saveFile.scoreBufferValue.Clear();
+        curScoreBuffer.Clear();
+        updatedScoreboard.Clear();
+        lastScoreboard.Clear();
+        Start();
+    }
+
     private bool CheckIfProcessedScoreIsHigherThanLowestScore(Round _processedScore)
     {
         lastScoreboard.Sort((round1, round2) => round2.playerScore.CompareTo(round1.playerScore));
@@ -61,13 +80,22 @@ public class ScoreBoardManager : MonoBehaviour
 
     private void SendUpdatedScoreBoardToGameManagerAndResetCurScore()
     {
-        GameManager.Instance.saveFile.scoreBuffer.Clear();
-        GameManager.Instance.saveFile.scoreboard = updatedScoreboard;
+        GameManager.Instance.saveFile.scoreBufferName.Clear();
+        GameManager.Instance.saveFile.scoreBufferValue.Clear();
+        GameManager.Instance.saveFile.scoreboardName.Clear(); 
+        GameManager.Instance.saveFile.scoreboardValue.Clear();
+        foreach (Round round in updatedScoreboard)
+        {
+            GameManager.Instance.saveFile.scoreboardName.Add(round.playerName);
+            GameManager.Instance.saveFile.scoreboardValue.Add(round.playerScore);
+        }
+
+            GameManager.Instance.Save();
     }
 
     private void PrintUpdatedScoreBoardToText()
     {
-        updatedScoreboard.Sort((round1, round2) => round2.playerScore.CompareTo(round1.playerScore));
+        updatedScoreboard.Sort((round1, round2) => round1.playerScore.CompareTo(round2.playerScore));
         updatedScoreboard.Reverse();
         foreach (GameObject content in contents)
         {
@@ -84,14 +112,14 @@ public class ScoreBoardManager : MonoBehaviour
 
     private void DeleteLowestScore()
     {
-        lastScoreboard.Sort();
+        lastScoreboard.Sort((round1, round2) => round1.playerScore.CompareTo(round2.playerScore));
         lastScoreboard.RemoveAt(0);
     }
 
     private void SortScoreInScoreBoard(Round _processedScore)
     {
         lastScoreboard.Add(_processedScore);
-        lastScoreboard.Sort((round1, round2) => round2.playerScore.CompareTo(round1.playerScore));
+        lastScoreboard.Sort((round1, round2) => round1.playerScore.CompareTo(round2.playerScore));
     }
 
     public bool CheckIfScoreboardHasEmptySlots()

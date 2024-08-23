@@ -26,11 +26,15 @@ public class WolfAttackState : WolfBaseState
     }
     public void CheckHit()
     {
+        context.anim.ResetTrigger("Attack");
         GameObject target = context.GetNearestSheep(transform.position);
 
         if (Vector3.Distance(transform.position, target.transform.position) < 5f)
         {
-            target.GetComponent<SheepStateMachine>().DealDamage();
+            if (target != null)
+            {
+                target.GetComponent<SheepStateMachine>().DealDamage();
+            }
         }
     }
 
@@ -38,7 +42,6 @@ public class WolfAttackState : WolfBaseState
     {
         StartCoroutine(MoveForward());
         isAttacking = false;
-        context.anim.ResetTrigger("Attack");
     }
     private IEnumerator MoveForward()
     {

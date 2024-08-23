@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -48,7 +47,12 @@ public class WolfIdleState : WolfBaseState
         destination *= rnd.Next(maxDestinationDistance);
 
         Vector3 targetPos = transform.position + destination;
-
+        if (errorCounter > 100)
+        {
+            errorCounter = 0;
+            context.spawner.DespawnEnemy(gameObject);
+            return Vector3.zero;
+        }
         if (InvalidDestination(targetPos))
         {
             errorCounter++;
@@ -60,12 +64,7 @@ public class WolfIdleState : WolfBaseState
             return hit.position;
         }
 
-        if(errorCounter > 100)
-        {
-            errorCounter = 0;
-            context.spawner.DespawnEnemy(gameObject);
-            return Vector3.zero;
-        }
+
         return Vector3.zero;
     }
     private bool InvalidDestination(Vector3 _destination)
@@ -109,6 +108,8 @@ public class WolfIdleState : WolfBaseState
             return;
         }
         GameObject nearestSheep = _context.GetNearestSheep(transform.position);
+        if (nearestSheep == null) return;
+
         if (Vector3.Distance(nearestSheep.transform.position, transform.position) < _context.wolfSmellDistanceToHuntSheep)
         {
             _context.SwitchState(_context.wolfRunState);

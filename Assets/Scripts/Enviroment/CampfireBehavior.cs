@@ -12,7 +12,6 @@ public class CampfireBehavior : MonoBehaviour
     [SerializeField] private int killFireAfterRainInSec;
     [SerializeField] private int killSmokeAfterFireInSec;
 
-    private bool isOff = false;
     void OnEnable()
     {
         smomkeEffect.enabled = true;
@@ -22,26 +21,25 @@ public class CampfireBehavior : MonoBehaviour
 
     private async void RainStarts()
     {
-        if (isOff) return;
 
-        smomkeEffect.SendEvent("StartSmoke");
+        if (smomkeEffect != null) smomkeEffect.SendEvent("StartSmoke");
 
         await Task.Delay(killFireAfterRainInSec * 1000);
-        
-        fireEffect.SendEvent("StopFire");
+
+        if (fireEffect != null) fireEffect.SendEvent("StopFire");
 
         await Task.Delay(killSmokeAfterFireInSec * 1000);
 
-        smomkeEffect.SendEvent("StopSmoke");
+        if(smomkeEffect != null) smomkeEffect.SendEvent("StopSmoke");
 
-        isOff= true;
+        OnDisable();
     }
 
 
     private void OnDisable()
     {
         Clear.rainStarts -= RainStarts;
-        smomkeEffect.enabled = false;
+        if (smomkeEffect != null) smomkeEffect.enabled = false;
     }
 
 
