@@ -10,7 +10,7 @@ public class ObstaclesGenerator : MonoBehaviour
     static Terrain terrain;           // Übernommen aus dem Originalcode
     static bool isError;              // Übernommen aus dem Originalcode
 
-    public static void GenerateTreeObstacles(Terrain _terrain, string[] _includedObstaclesNames, Vector3 _center = new Vector3(), Vector3 _size = new Vector3())
+    public static void GenerateTreeObstacles(Terrain _terrain, string[] _includedObstaclesNames, Vector3 _center = new Vector3(), Vector3 _size = new Vector3()) // Neue Funktionalität hinzugefügt (Aufrufbar aus EditorWindow)
     {
         terrain = _terrain;  // Angepasst vom Originalcode
         Obstacles = terrain.terrainData.treeInstances;  // Übernommen aus dem Originalcode
@@ -48,41 +48,41 @@ public class ObstaclesGenerator : MonoBehaviour
                 {
                     Collider[] colliders = obstacleTerrainObject.GetComponents<Collider>();  // Übernommen aus dem Originalcode, aber erweitert auf mehrere Collider
 
-                    if (colliders.Count() <= 0)  // Übernommen aus dem Originalcode
+                    if (colliders.Count() <= 0) 
                     {
-                        isError = true;  // Übernommen aus dem Originalcode
-                        Debug.LogWarning("ERROR  There is no CapsuleCollider or BoxCollider attached to ''" + obstacleTerrainObject.name + "'' please add one of them.");  // Übernommen aus dem Originalcode
-                        Destroy(parent);  // Neue Funktionalität hinzugefügt
-                        break;  // Übernommen aus dem Originalcode
+                        isError = true;  
+                        Debug.LogWarning("ERROR  There is no CapsuleCollider or BoxCollider attached to ''" + obstacleTerrainObject.name + "'' please add one of them.");  
+                        Destroy(parent);  
+                        break;  
                     }
 
-                    foreach (Collider collider in colliders)  // Neue Funktionalität hinzugefügt
+                    foreach (Collider collider in colliders)  // Gesamte foreach aus Originalcode und nur leicht angepasst (foreach hinzugefügt wegen mehreren collidern)
                     {
-                        Quaternion tempRot = Quaternion.AngleAxis(obstacle.rotation * Mathf.Rad2Deg, Vector3.up);  // Übernommen aus dem Originalcode
+                        Quaternion tempRot = Quaternion.AngleAxis(obstacle.rotation * Mathf.Rad2Deg, Vector3.up);
 
-                        GameObject obstacleObject = new GameObject("Obstacle" + i);  // Übernommen aus dem Originalcode
-                        obstacleObject.transform.SetParent(parent.transform);  // Übernommen aus dem Originalcode
-                        obstacleObject.transform.position = worldPosition;  // Übernommen aus dem Originalcode
-                        obstacleObject.transform.rotation = tempRot;  // Übernommen aus dem Originalcode
+                        GameObject obstacleObject = new GameObject("Obstacle" + i); 
+                        obstacleObject.transform.SetParent(parent.transform);  
+                        obstacleObject.transform.position = worldPosition;  
+                        obstacleObject.transform.rotation = tempRot;  
 
-                        NavMeshObstacle obstacleComponent = obstacleObject.AddComponent<NavMeshObstacle>();  // Übernommen aus dem Originalcode
-                        obstacleComponent.carving = true;  // Übernommen aus dem Originalcode
-                        obstacleComponent.carveOnlyStationary = true;  // Übernommen aus dem Originalcode
+                        NavMeshObstacle obstacleComponent = obstacleObject.AddComponent<NavMeshObstacle>();  // Leicht angepasst
+                        obstacleComponent.carving = true;  
+                        obstacleComponent.carveOnlyStationary = true;  
 
-                        if (collider.GetType() == typeof(CapsuleCollider))  // Übernommen aus dem Originalcode
+                        if (collider.GetType() == typeof(CapsuleCollider))  // If ganz aus dem Originalcode übernommen
                         {
-                            CapsuleCollider capsuleColl = (CapsuleCollider)collider;  // Übernommen aus dem Originalcode
-                            obstacleComponent.shape = NavMeshObstacleShape.Capsule;  // Übernommen aus dem Originalcode
-                            obstacleComponent.center = capsuleColl.center;  // Übernommen aus dem Originalcode
-                            obstacleComponent.radius = capsuleColl.radius;  // Übernommen aus dem Originalcode
-                            obstacleComponent.height = capsuleColl.height;  // Übernommen aus dem Originalcode
+                            CapsuleCollider capsuleColl = (CapsuleCollider)collider; 
+                            obstacleComponent.shape = NavMeshObstacleShape.Capsule;  
+                            obstacleComponent.center = capsuleColl.center;  
+                            obstacleComponent.radius = capsuleColl.radius;  
+                            obstacleComponent.height = capsuleColl.height;  
                         }
-                        else if (collider.GetType() == typeof(BoxCollider))  // Übernommen aus dem Originalcode
+                        else if (collider.GetType() == typeof(BoxCollider))  // If ganz aus dem Originalcode übernommen
                         {
-                            BoxCollider boxColl = (BoxCollider)collider;  // Übernommen aus dem Originalcode
-                            obstacleComponent.shape = NavMeshObstacleShape.Box;  // Übernommen aus dem Originalcode
-                            obstacleComponent.center = boxColl.center;  // Übernommen aus dem Originalcode
-                            obstacleComponent.size = boxColl.size;  // Übernommen aus dem Originalcode
+                            BoxCollider boxColl = (BoxCollider)collider; 
+                            obstacleComponent.shape = NavMeshObstacleShape.Box; 
+                            obstacleComponent.center = boxColl.center; 
+                            obstacleComponent.size = boxColl.size; 
                         }
                     }
 
